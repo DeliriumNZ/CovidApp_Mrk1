@@ -127,6 +127,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="UserDetails.cpp" />
+    <ClCompile Include="UserRecords.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DashBoard.h">
@@ -139,6 +140,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UserDetails.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserRecords.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -154,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserDetails.resx">
       <DependentUpon>UserDetails.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserRecords.resx">
+      <DependentUpon>UserRecords.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
