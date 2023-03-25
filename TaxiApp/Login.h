@@ -233,15 +233,17 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
 	if (checkLogin(email, password))
 	{
-		MessageBox::Show("Login successful");
 		DashBoard^ dashboardForm = gcnew DashBoard();
-		//Open Register window
+
+		this->Hide();
+
 		dashboardForm->Show();
 	}
 	else
 	{
 		MessageBox::Show("Invalid email or password");
 	}
+	
 }
 private: System::Void lbSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
 	

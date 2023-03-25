@@ -1,5 +1,6 @@
 #pragma once
 #include "UserDetails.h"
+//#include "Login.h"
 
 namespace TaxiApp {
 
@@ -40,8 +41,10 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ btnRegister;
+
+
 	private: System::Windows::Forms::Label^ label1;
+
 	protected:
 
 	private:
@@ -63,7 +66,6 @@ namespace TaxiApp {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->btnRegister = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
@@ -128,19 +130,6 @@ namespace TaxiApp {
 			this->button5->Text = L"Report Bugs";
 			this->button5->UseVisualStyleBackColor = false;
 			// 
-			// btnRegister
-			// 
-			this->btnRegister->BackColor = System::Drawing::Color::Gold;
-			this->btnRegister->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnRegister->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 18));
-			this->btnRegister->ForeColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->btnRegister->Location = System::Drawing::Point(342, 176);
-			this->btnRegister->Name = L"btnRegister";
-			this->btnRegister->Size = System::Drawing::Size(99, 38);
-			this->btnRegister->TabIndex = 10;
-			this->btnRegister->Text = L"Logout";
-			this->btnRegister->UseVisualStyleBackColor = false;
-			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -159,7 +148,6 @@ namespace TaxiApp {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->btnRegister);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -174,8 +162,9 @@ namespace TaxiApp {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		UserDetails^ detailsForm = gcnew UserDetails();
-		//Open Register window
 		detailsForm->Show();
+		//Is Github working test comment
 	}
+
 };
 }
