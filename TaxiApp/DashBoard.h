@@ -2,6 +2,7 @@
 #include "UserDetails.h"
 #include "UserRecords.h"
 #include "UserVaccine.h"
+#include "UserQR.h"
 //#include "Login.h"
 
 namespace TaxiApp {
@@ -125,6 +126,7 @@ namespace TaxiApp {
 			this->btnQRCode->TabIndex = 3;
 			this->btnQRCode->Text = L"QR Code";
 			this->btnQRCode->UseVisualStyleBackColor = false;
+			this->btnQRCode->Click += gcnew System::EventHandler(this, &DashBoard::btnQRCode_Click);
 			// 
 			// btnReportBug
 			// 
@@ -181,6 +183,10 @@ private: System::Void btnRecordsTest_Click(System::Object^ sender, System::Event
 private: System::Void btnVaccine_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserVaccine^ vaccineForm = gcnew UserVaccine();
 	vaccineForm->Show();
+}
+private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^ e) {
+	UserQR^ qrForm = gcnew UserQR();
+	qrForm->Show();
 }
 };
 }

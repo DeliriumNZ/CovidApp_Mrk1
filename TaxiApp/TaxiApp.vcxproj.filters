@@ -36,6 +36,9 @@
     <ClCompile Include="UserVaccine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserQR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UserVaccine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserQR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

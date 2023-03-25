@@ -127,6 +127,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="UserDetails.cpp" />
+    <ClCompile Include="UserQR.cpp" />
     <ClCompile Include="UserRecords.cpp" />
     <ClCompile Include="UserVaccine.cpp" />
   </ItemGroup>
@@ -141,6 +142,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UserDetails.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserQR.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UserRecords.h">
@@ -162,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserDetails.resx">
       <DependentUpon>UserDetails.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserQR.resx">
+      <DependentUpon>UserQR.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserRecords.resx">
       <DependentUpon>UserRecords.h</DependentUpon>
