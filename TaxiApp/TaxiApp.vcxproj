@@ -126,6 +126,7 @@
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Register.cpp" />
+    <ClCompile Include="ReportBug.cpp" />
     <ClCompile Include="UserDetails.cpp" />
     <ClCompile Include="UserQR.cpp" />
     <ClCompile Include="UserRecords.cpp" />
@@ -139,6 +140,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Register.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ReportBug.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UserDetails.h">
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBug.resx">
+      <DependentUpon>ReportBug.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDetails.resx">
       <DependentUpon>UserDetails.h</DependentUpon>

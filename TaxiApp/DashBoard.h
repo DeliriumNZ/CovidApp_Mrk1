@@ -3,6 +3,13 @@
 #include "UserRecords.h"
 #include "UserVaccine.h"
 #include "UserQR.h"
+#include "ReportBug.h"
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <msclr/marshal_cppstd.h>
+
 //#include "Login.h"
 
 namespace TaxiApp {
@@ -44,13 +51,15 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Button^ btnVaccine;
 	private: System::Windows::Forms::Button^ btnQRCode;
 	private: System::Windows::Forms::Button^ btnReportBug;
+	public: System::Windows::Forms::Label^ label1;
+	private:
 
 
 
 
 
 
-	private: System::Windows::Forms::Label^ label1;
+
 
 	protected:
 
@@ -139,6 +148,7 @@ namespace TaxiApp {
 			this->btnReportBug->TabIndex = 4;
 			this->btnReportBug->Text = L"Report Bugs";
 			this->btnReportBug->UseVisualStyleBackColor = false;
+			this->btnReportBug->Click += gcnew System::EventHandler(this, &DashBoard::btnReportBug_Click);
 			// 
 			// label1
 			// 
@@ -148,7 +158,7 @@ namespace TaxiApp {
 			this->label1->Location = System::Drawing::Point(96, 139);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(176, 24);
-			this->label1->TabIndex = 11;
+			this->label1->TabIndex = 0;
 			this->label1->Text = L"User Name Here";
 			// 
 			// DashBoard
@@ -170,6 +180,12 @@ namespace TaxiApp {
 
 		}
 #pragma endregion
+public:
+	DashBoard(System::String^ Username)
+	{
+		InitializeComponent();
+		label1->Text = "User: " + Username;
+	}
 //User Details Button	
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		UserDetails^ detailsForm = gcnew UserDetails();
@@ -187,6 +203,10 @@ private: System::Void btnVaccine_Click(System::Object^ sender, System::EventArgs
 private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserQR^ qrForm = gcnew UserQR();
 	qrForm->Show();
+}
+private: System::Void btnReportBug_Click(System::Object^ sender, System::EventArgs^ e) {
+	ReportBug^ reportBugForm = gcnew ReportBug();
+	reportBugForm->Show();
 }
 };
 }

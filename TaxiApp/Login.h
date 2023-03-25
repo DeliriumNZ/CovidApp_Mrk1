@@ -53,6 +53,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ lbSignUp;
+	private: System::Windows::Forms::Label^ lbBuffer;
 
 
 
@@ -82,6 +83,7 @@ namespace TaxiApp {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->lbSignUp = (gcnew System::Windows::Forms::Label());
+			this->lbBuffer = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnLogin
@@ -179,6 +181,16 @@ namespace TaxiApp {
 			this->lbSignUp->Text = L"Sign up now";
 			this->lbSignUp->Click += gcnew System::EventHandler(this, &Login::lbSignUp_Click);
 			// 
+			// lbBuffer
+			// 
+			this->lbBuffer->AutoSize = true;
+			this->lbBuffer->Location = System::Drawing::Point(12, 9);
+			this->lbBuffer->Name = L"lbBuffer";
+			this->lbBuffer->Size = System::Drawing::Size(264, 13);
+			this->lbBuffer->TabIndex = 0;
+			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
+			this->lbBuffer->Visible = false;
+			// 
 			// Login
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -186,6 +198,7 @@ namespace TaxiApp {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->lbBuffer);
 			this->Controls->Add(this->lbSignUp);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -207,7 +220,7 @@ namespace TaxiApp {
 		{
 			string line;
 			string fileName = email + "_User_Data.txt";
-			ifstream myFile(fileName); // Replace with your file name
+			ifstream myFile(fileName);
 
 			if (myFile.is_open())
 			{
@@ -227,13 +240,32 @@ namespace TaxiApp {
 			}
 			return false; // Login failed
 		}
+
+private: System::String^ Username;
+
 private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 	string email = msclr::interop::marshal_as<std::string>(txtBoxUserName->Text);
 	string password = msclr::interop::marshal_as<std::string>(txtBoxUserPass->Text);
+	
 
 	if (checkLogin(email, password))
 	{
-		DashBoard^ dashboardForm = gcnew DashBoard();
+		string fileName = email + "_User_Data.txt";
+		
+		ifstream infile(fileName);
+		string line;
+		getline(infile, line);
+		getline(infile, line);
+		//^^ Line 1 & 2 of file skipped
+		getline(infile, line);
+		//^^ Reading line 3, location of user name
+		infile.close();
+		String^ labelText = msclr::interop::marshal_as<System::String^>(line);
+		lbBuffer->Text = labelText;
+
+		Username = lbBuffer->Text;
+
+		DashBoard^ dashboardForm = gcnew DashBoard(Username);
 
 		this->Hide();
 
@@ -245,6 +277,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	}
 	
 }
+
 private: System::Void lbSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 	Register^ regForm = gcnew Register();
