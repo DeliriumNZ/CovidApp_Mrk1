@@ -10,12 +10,12 @@ namespace TaxiApp {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for UserRecords
+	/// Summary for UserVaccine
 	/// </summary>
-	public ref class UserRecords : public System::Windows::Forms::Form
+	public ref class UserVaccine : public System::Windows::Forms::Form
 	{
 	public:
-		UserRecords(void)
+		UserVaccine(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace TaxiApp {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~UserRecords()
+		~UserVaccine()
 		{
 			if (components)
 			{
@@ -48,18 +48,18 @@ namespace TaxiApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UserRecords::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UserVaccine::typeid));
 			this->SuspendLayout();
 			// 
-			// UserRecords
+			// UserVaccine
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F));
-			this->Name = L"UserRecords";
-			this->Text = L"UserRecords";
+			this->Name = L"UserVaccine";
+			this->Text = L"UserVaccine";
 			this->ResumeLayout(false);
 
 		}

@@ -33,6 +33,9 @@
     <ClCompile Include="UserRecords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserVaccine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UserRecords.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserVaccine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

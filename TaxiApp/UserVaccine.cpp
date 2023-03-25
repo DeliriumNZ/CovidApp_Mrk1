@@ -1,0 +1,2 @@
+#include "UserVaccine.h"
+

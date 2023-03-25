@@ -1,6 +1,7 @@
 #pragma once
 #include "UserDetails.h"
 #include "UserRecords.h"
+#include "UserVaccine.h"
 //#include "Login.h"
 
 namespace TaxiApp {
@@ -178,6 +179,8 @@ private: System::Void btnRecordsTest_Click(System::Object^ sender, System::Event
 	recordsForm->Show();
 }
 private: System::Void btnVaccine_Click(System::Object^ sender, System::EventArgs^ e) {
+	UserVaccine^ vaccineForm = gcnew UserVaccine();
+	vaccineForm->Show();
 }
 };
 }
