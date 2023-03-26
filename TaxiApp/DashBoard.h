@@ -53,6 +53,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Button^ btnReportBug;
 	public: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ lbBuffer;
+	private: System::Windows::Forms::Label^ lbEmailBuff;
 	public:
 
 	public:
@@ -88,6 +89,7 @@ namespace TaxiApp {
 			this->btnReportBug = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->lbBuffer = (gcnew System::Windows::Forms::Label());
+			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -174,7 +176,15 @@ namespace TaxiApp {
 			this->lbBuffer->Size = System::Drawing::Size(264, 13);
 			this->lbBuffer->TabIndex = 5;
 			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
-			this->lbBuffer->Visible = false;
+			// 
+			// lbEmailBuff
+			// 
+			this->lbEmailBuff->AutoSize = true;
+			this->lbEmailBuff->Location = System::Drawing::Point(-2, 18);
+			this->lbEmailBuff->Name = L"lbEmailBuff";
+			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
+			this->lbEmailBuff->TabIndex = 6;
+			this->lbEmailBuff->Text = L"Email Buff";
 			// 
 			// DashBoard
 			// 
@@ -182,6 +192,7 @@ namespace TaxiApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->lbBuffer);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnReportBug);
@@ -191,6 +202,7 @@ namespace TaxiApp {
 			this->Controls->Add(this->button1);
 			this->Name = L"DashBoard";
 			this->Text = L"DashBoard";
+			this->Shown += gcnew System::EventHandler(this, &DashBoard::DashBoard_Shown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -200,7 +212,14 @@ public:
 	DashBoard(System::String^ Username)
 	{
 		InitializeComponent();
-		label1->Text = "User: " + Username;
+		label1->Text = Username;
+	}
+
+public:
+	property String^ LabelText {
+		String^ get() {
+			return lbEmailBuff->Text;
+		}
 	}
 //User Details Button	
 	private: System::String^ Username;
@@ -225,6 +244,10 @@ private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^
 private: System::Void btnReportBug_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReportBug^ reportBugForm = gcnew ReportBug();
 	reportBugForm->Show();
+}
+private: System::Void DashBoard_Shown(System::Object^ sender, System::EventArgs^ e) {
+	
+	
 }
 };
 }

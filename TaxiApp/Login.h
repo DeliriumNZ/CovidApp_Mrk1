@@ -194,7 +194,6 @@ namespace TaxiApp {
 			this->lbBuffer->Size = System::Drawing::Size(264, 13);
 			this->lbBuffer->TabIndex = 1;
 			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
-			this->lbBuffer->Visible = false;
 			// 
 			// label4
 			// 
@@ -270,7 +269,6 @@ bool checkLogin(string email, string password)
 		}
 
 private: System::String^ Username;
-private: System::String^ Email; //WIP
 
 private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 	string email = msclr::interop::marshal_as<std::string>(txtBoxUserName->Text);
@@ -279,8 +277,8 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
 	if (checkLogin(email, password))
 	{
-		string fileName = email + "_User_Data.txt";
-		
+		//Reading the file to gain users username
+		string fileName = email + "_User_Data.txt";		
 		ifstream infile(fileName);
 		string line;
 		getline(infile, line);
@@ -290,14 +288,13 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 		//^^ Reading line 3, location of user name
 		infile.close();
 		String^ labelText = msclr::interop::marshal_as<System::String^>(line);
+		//Makes buffer lable username
 		lbBuffer->Text = labelText;
-
 		Username = lbBuffer->Text;
 
-		DashBoard^ dashboardForm = gcnew DashBoard(Username);
 
+		DashBoard^ dashboardForm = gcnew DashBoard(Username);		
 		this->Hide();
-
 		dashboardForm->Show();
 	}
 	else
@@ -306,7 +303,15 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	}
 	
 }
-
+public:
+	property String^ Email {
+		String^ get() {
+			return txtBoxUserName->Text;
+		}
+		void set(String^ value) {
+			txtBoxUserName->Text = value;
+		}
+	}
 private: System::Void lbSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 	Register^ regForm = gcnew Register();
