@@ -1,5 +1,6 @@
 #include "Login.h"
 #include "Register.h"
+#include "DashBoard.h"
 #include <fstream>
 #include <iostream>
 

@@ -44,6 +44,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ lbHealthID;
 	private: System::Windows::Forms::Label^ lbGender;
 	private: System::Windows::Forms::Label^ lbEthnicty;
+	private: System::Windows::Forms::Label^ lbEmailBuff;
 
 
 
@@ -81,6 +82,7 @@ namespace TaxiApp {
 			this->lbHealthID = (gcnew System::Windows::Forms::Label());
 			this->lbGender = (gcnew System::Windows::Forms::Label());
 			this->lbEthnicty = (gcnew System::Windows::Forms::Label());
+			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// lbUserNameTop
@@ -198,12 +200,22 @@ namespace TaxiApp {
 			this->lbEthnicty->TabIndex = 25;
 			this->lbEthnicty->Text = L"Ethnicty";
 			// 
+			// lbEmailBuff
+			// 
+			this->lbEmailBuff->AutoSize = true;
+			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
+			this->lbEmailBuff->Name = L"lbEmailBuff";
+			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
+			this->lbEmailBuff->TabIndex = 26;
+			this->lbEmailBuff->Text = L"Email Buff";
+			// 
 			// UserDetails
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->lbEthnicty);
 			this->Controls->Add(this->lbGender);
 			this->Controls->Add(this->lbHealthID);
@@ -225,8 +237,6 @@ public: //This shows user name at top of form
 		InitializeComponent();
 		lbUserNameTop->Text = Email;
 		lbName->Text = Email;
-		String^ Address = "He";
-		lbAddress->Text = Address;
 	}
 };
 }

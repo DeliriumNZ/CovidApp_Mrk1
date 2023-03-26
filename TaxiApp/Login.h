@@ -293,8 +293,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 		Username = lbBuffer->Text;
 
 
-		DashBoard^ dashboardForm = gcnew DashBoard(Username);		
-		this->Hide();
+		DashBoard^ dashboardForm = gcnew DashBoard(txtBoxUserName->Text);
 		dashboardForm->Show();
 	}
 	else

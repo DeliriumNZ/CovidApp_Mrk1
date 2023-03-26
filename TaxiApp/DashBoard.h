@@ -34,6 +34,21 @@ namespace TaxiApp {
 			//TODO: Add the constructor code here
 			//
 		}
+		DashBoard(String^Email)
+		{
+			InitializeComponent();
+			lbEmailBuff->Text = Email;
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+		/*
+		DashBoard(String^ Username)
+		{
+			InitializeComponent();
+			label1->Text = Username;
+		}
+		*/
 
 	protected:
 		/// <summary>
@@ -52,8 +67,10 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Button^ btnQRCode;
 	private: System::Windows::Forms::Button^ btnReportBug;
 	public: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ lbBuffer;
+
 	private: System::Windows::Forms::Label^ lbEmailBuff;
+
+
 	public:
 
 	public:
@@ -88,7 +105,6 @@ namespace TaxiApp {
 			this->btnQRCode = (gcnew System::Windows::Forms::Button());
 			this->btnReportBug = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->lbBuffer = (gcnew System::Windows::Forms::Label());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
@@ -168,15 +184,6 @@ namespace TaxiApp {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"User Name Here";
 			// 
-			// lbBuffer
-			// 
-			this->lbBuffer->AutoSize = true;
-			this->lbBuffer->Location = System::Drawing::Point(-2, 0);
-			this->lbBuffer->Name = L"lbBuffer";
-			this->lbBuffer->Size = System::Drawing::Size(264, 13);
-			this->lbBuffer->TabIndex = 5;
-			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
-			// 
 			// lbEmailBuff
 			// 
 			this->lbEmailBuff->AutoSize = true;
@@ -193,7 +200,6 @@ namespace TaxiApp {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
 			this->Controls->Add(this->lbEmailBuff);
-			this->Controls->Add(this->lbBuffer);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnReportBug);
 			this->Controls->Add(this->btnQRCode);
@@ -208,13 +214,6 @@ namespace TaxiApp {
 
 		}
 #pragma endregion
-public:
-	DashBoard(System::String^ Username)
-	{
-		InitializeComponent();
-		label1->Text = Username;
-	}
-
 public:
 	property String^ LabelText {
 		String^ get() {
@@ -245,9 +244,31 @@ private: System::Void btnReportBug_Click(System::Object^ sender, System::EventAr
 	ReportBug^ reportBugForm = gcnew ReportBug();
 	reportBugForm->Show();
 }
+
+public:
+	property String^ Email {
+		String^ get() {
+			return lbEmailBuff->Text;
+		}
+		void set(String^ value) {
+			lbEmailBuff->Text = value;
+		}
+	}
 private: System::Void DashBoard_Shown(System::Object^ sender, System::EventArgs^ e) {
-	
-	
+	std::ifstream inputFile("Nathan@email.com_User_Data.txt");
+	std::string line;
+	std::getline(inputFile, line);
+	std::getline(inputFile, line);
+	//^^ Line 1 & 2 of file skipped
+	std::getline(inputFile, line);
+	//^^ Reading line 3, location of user name
+	inputFile.close();
+
+	String^ TEST = msclr::interop::marshal_as<System::String^>(line);
+	label1->Text = TEST;
+
+	Username = label1->Text;	
 }
+
 };
 }
