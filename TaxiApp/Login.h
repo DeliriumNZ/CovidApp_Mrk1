@@ -54,6 +54,8 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ lbSignUp;
 	private: System::Windows::Forms::Label^ lbBuffer;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
 
 
 
@@ -84,6 +86,8 @@ namespace TaxiApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->lbSignUp = (gcnew System::Windows::Forms::Label());
 			this->lbBuffer = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnLogin
@@ -97,7 +101,7 @@ namespace TaxiApp {
 			this->btnLogin->Location = System::Drawing::Point(127, 522);
 			this->btnLogin->Name = L"btnLogin";
 			this->btnLogin->Size = System::Drawing::Size(263, 74);
-			this->btnLogin->TabIndex = 1;
+			this->btnLogin->TabIndex = 4;
 			this->btnLogin->Text = L"Login";
 			this->btnLogin->UseVisualStyleBackColor = false;
 			this->btnLogin->Click += gcnew System::EventHandler(this, &Login::btnLogin_Click);
@@ -111,8 +115,9 @@ namespace TaxiApp {
 			this->txtBoxUserPass->ForeColor = System::Drawing::SystemColors::ButtonShadow;
 			this->txtBoxUserPass->Location = System::Drawing::Point(127, 399);
 			this->txtBoxUserPass->Name = L"txtBoxUserPass";
+			this->txtBoxUserPass->PasswordChar = '*';
 			this->txtBoxUserPass->Size = System::Drawing::Size(263, 38);
-			this->txtBoxUserPass->TabIndex = 5;
+			this->txtBoxUserPass->TabIndex = 3;
 			this->txtBoxUserPass->Text = L"Password";
 			this->txtBoxUserPass->Enter += gcnew System::EventHandler(this, &Login::txtBoxUserPass_TextChanged);
 			// 
@@ -126,8 +131,8 @@ namespace TaxiApp {
 			this->txtBoxUserName->Location = System::Drawing::Point(127, 302);
 			this->txtBoxUserName->Name = L"txtBoxUserName";
 			this->txtBoxUserName->Size = System::Drawing::Size(263, 38);
-			this->txtBoxUserName->TabIndex = 6;
-			this->txtBoxUserName->Text = L"Email";
+			this->txtBoxUserName->TabIndex = 2;
+			this->txtBoxUserName->Text = L"Email@exm.com";
 			this->txtBoxUserName->Enter += gcnew System::EventHandler(this, &Login::txtBoxUserName_TextChanged);
 			// 
 			// label1
@@ -177,7 +182,7 @@ namespace TaxiApp {
 			this->lbSignUp->Location = System::Drawing::Point(213, 608);
 			this->lbSignUp->Name = L"lbSignUp";
 			this->lbSignUp->Size = System::Drawing::Size(85, 15);
-			this->lbSignUp->TabIndex = 12;
+			this->lbSignUp->TabIndex = 5;
 			this->lbSignUp->Text = L"Sign up now";
 			this->lbSignUp->Click += gcnew System::EventHandler(this, &Login::lbSignUp_Click);
 			// 
@@ -187,9 +192,29 @@ namespace TaxiApp {
 			this->lbBuffer->Location = System::Drawing::Point(12, 9);
 			this->lbBuffer->Name = L"lbBuffer";
 			this->lbBuffer->Size = System::Drawing::Size(264, 13);
-			this->lbBuffer->TabIndex = 0;
+			this->lbBuffer->TabIndex = 1;
 			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
 			this->lbBuffer->Visible = false;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Location = System::Drawing::Point(127, 283);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(32, 13);
+			this->label4->TabIndex = 0;
+			this->label4->Text = L"Email";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->BackColor = System::Drawing::Color::Transparent;
+			this->label5->Location = System::Drawing::Point(127, 383);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(53, 13);
+			this->label5->TabIndex = 12;
+			this->label5->Text = L"Password";
 			// 
 			// Login
 			// 
@@ -198,6 +223,8 @@ namespace TaxiApp {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->lbBuffer);
 			this->Controls->Add(this->lbSignUp);
 			this->Controls->Add(this->label3);
@@ -209,14 +236,15 @@ namespace TaxiApp {
 			this->DoubleBuffered = true;
 			this->Name = L"Login";
 			this->Text = L"Login";
+			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-
-		bool checkLogin(string email, string password)
+//Is loging correct
+bool checkLogin(string email, string password)
 		{
 			string line;
 			string fileName = email + "_User_Data.txt";
@@ -242,6 +270,7 @@ namespace TaxiApp {
 		}
 
 private: System::String^ Username;
+private: System::String^ Email; //WIP
 
 private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 	string email = msclr::interop::marshal_as<std::string>(txtBoxUserName->Text);
@@ -286,12 +315,7 @@ private: System::Void lbSignUp_Click(System::Object^ sender, System::EventArgs^ 
 
 }
 private: System::Void txtBoxUserName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (txtBoxUserName->Text == "Email")
-	{
-		txtBoxUserName->Text = "";
-
-		txtBoxUserName->ForeColor = ForeColor.Black;
-	}
+	txtBoxUserName->ForeColor = ForeColor.Black;
 }
 private: System::Void txtBoxUserPass_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxUserPass->Text == "Password")
@@ -300,6 +324,8 @@ private: System::Void txtBoxUserPass_TextChanged(System::Object^ sender, System:
 
 		txtBoxUserPass->ForeColor = ForeColor.Black;
 	}
+}
+private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

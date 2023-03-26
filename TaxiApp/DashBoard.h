@@ -52,6 +52,10 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Button^ btnQRCode;
 	private: System::Windows::Forms::Button^ btnReportBug;
 	public: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ lbBuffer;
+	public:
+
+	public:
 	private:
 
 
@@ -83,6 +87,7 @@ namespace TaxiApp {
 			this->btnQRCode = (gcnew System::Windows::Forms::Button());
 			this->btnReportBug = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lbBuffer = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -161,12 +166,23 @@ namespace TaxiApp {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"User Name Here";
 			// 
+			// lbBuffer
+			// 
+			this->lbBuffer->AutoSize = true;
+			this->lbBuffer->Location = System::Drawing::Point(-2, 0);
+			this->lbBuffer->Name = L"lbBuffer";
+			this->lbBuffer->Size = System::Drawing::Size(264, 13);
+			this->lbBuffer->TabIndex = 5;
+			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
+			this->lbBuffer->Visible = false;
+			// 
 			// DashBoard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->lbBuffer);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnReportBug);
 			this->Controls->Add(this->btnQRCode);
@@ -187,8 +203,10 @@ public:
 		label1->Text = "User: " + Username;
 	}
 //User Details Button	
+	private: System::String^ Username;
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		UserDetails^ detailsForm = gcnew UserDetails();
+	Username = label1->Text;
+		UserDetails^ detailsForm = gcnew UserDetails(Username);
 		detailsForm->Show();
 	}
 

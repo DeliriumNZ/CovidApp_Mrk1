@@ -349,7 +349,8 @@ private: System::Void btnRegister_Click(System::Object^ sender, System::EventArg
 	String^ filename = email + "_User_Data.txt";
 
 	StreamWriter^ writer = gcnew StreamWriter(filename);
-
+	//NOTE
+	//The order of text saved to the text file IS NOT the same order as it is shown on the register page.
 	writer->WriteLine(email);
 	writer->WriteLine(password); 
 	writer->WriteLine(fullname);	

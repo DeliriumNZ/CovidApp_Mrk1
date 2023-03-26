@@ -219,6 +219,11 @@ namespace TaxiApp {
 
 		}
 #pragma endregion
-
+public: //This shows user name at top of form
+	UserDetails(System::String^ Username)
+	{
+		InitializeComponent();
+		lbUserNameTop->Text = Username;
+	}
 };
 }
