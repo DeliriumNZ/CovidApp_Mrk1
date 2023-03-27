@@ -289,21 +289,36 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 	std::getline(inputFilePhone, line3);
 	std::getline(inputFilePhone, line3);
 	std::getline(inputFilePhone, line3);
-	//Reading Line 8, location of user phonenum
+	//Reading Line 8, location of user phoneNum
 	std::getline(inputFilePhone, line3);
 	inputFilePhone.close();
 	//Display information
 	String^ PHONE = msclr::interop::marshal_as<System::String^>(line3);
 	lbPhone->Text = PHONE;
 	//**End** Code for edited 1st info block - PHONE
-	 
+
 	//**Start** Code for edited 1st info block - GENDER
-	
+	std::string gender = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	ifstream inputFileGender(email + "_User_Data.txt");
+	string line4;
+	//Skip line 1-5
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	//Reading Line 5, location of user gender
+	std::getline(inputFileGender, line4);
+	inputFileGender.close();
+	//Display information
+	String^ GENDER = msclr::interop::marshal_as<System::String^>(line4);
+	lbGender->Text = GENDER;
 	//**End** Code for edited 1st info block - GENDER
 	
 	//**Start** Code for edited 1st info block - ETHNICTY
 	
 	//**End** Code for edited 1st info block - ETHNICTY
+
 }
 };
 }
