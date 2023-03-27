@@ -1,4 +1,8 @@
 #pragma once
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <msclr/marshal_cppstd.h>
 
 namespace TaxiApp {
 
@@ -8,6 +12,8 @@ namespace TaxiApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for UserDetails
@@ -21,6 +27,12 @@ namespace TaxiApp {
 			//
 			//TODO: Add the constructor code here
 			//
+		}
+		UserDetails(String^ Email)
+		{
+			InitializeComponent();
+			lbEmailBuff->Text = Email;
+
 		}
 
 	protected:
@@ -45,18 +57,6 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ lbGender;
 	private: System::Windows::Forms::Label^ lbEthnicty;
 	private: System::Windows::Forms::Label^ lbEmailBuff;
-
-
-
-
-
-
-
-
-
-
-
-
 
 	protected:
 
@@ -226,17 +226,84 @@ namespace TaxiApp {
 			this->Controls->Add(this->lbUserNameTop);
 			this->Name = L"UserDetails";
 			this->Text = L"UserDetails";
+			this->Shown += gcnew System::EventHandler(this, &UserDetails::UserDetails_Shown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-public: //This shows user name at top of form
-	UserDetails(System::String^ Email)
+public:
+	void SetEmailLabel(String^ LabelText)
 	{
-		InitializeComponent();
-		lbUserNameTop->Text = Email;
-		lbName->Text = Email;
+		lbEmailBuff->Text = LabelText;
 	}
+
+
+private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArgs^ e) {
+
+	std::string email = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std::ifstream inputFile(email + "_User_Data.txt");
+	std::string line;
+	//Line 1 & 2 of file skipped
+	std::getline(inputFile, line);
+	std::getline(inputFile, line);
+	//Reading line 3, location of user name
+	std::getline(inputFile, line);
+	inputFile.close();
+
+	//This makes the "User Name Here" label display user's name.
+	String^ NAME = msclr::interop::marshal_as<System::String^>(line);
+	lbUserNameTop->Text = NAME;
+
+	//**Start** Code for edited 1st info block - NAME
+	lbName->Text = NAME;
+	//**End** Code for edited 1st info block - NAME
+	
+	//**Start** Code for edited 1st info block - ADDRESS
+	std::string address = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std::ifstream inputFileAddress(email + "_User_Data.txt");
+	std::string line2;
+	//Skip Line 1-4
+	std::getline(inputFileAddress, line2);
+	std::getline(inputFileAddress, line2);
+	std::getline(inputFileAddress, line2);
+	std::getline(inputFileAddress, line2);
+	//Reading line 5, location of user address
+	std::getline(inputFileAddress, line2);
+	inputFileAddress.close();
+	//Display information
+	String^ ADDRESS = msclr::interop::marshal_as<System::String^>(line2);
+	lbAddress->Text = ADDRESS;
+
+	//**End** Code for edited 1st info block - ADDRESS
+	 
+	//**Start** Code for edited 1st info block - PHONE
+	std::string phone = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std:ifstream inputFilePhone(email + "_User_Data.txt");
+	string line3;
+	//Skipe Line 1-7
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	//Reading Line 8, location of user phonenum
+	std::getline(inputFilePhone, line3);
+	inputFilePhone.close();
+	//Display information
+	String^ PHONE = msclr::interop::marshal_as<System::String^>(line3);
+	lbPhone->Text = PHONE;
+	//**End** Code for edited 1st info block - PHONE
+	 
+	//**Start** Code for edited 1st info block - GENDER
+	
+	//**End** Code for edited 1st info block - GENDER
+	
+	//**Start** Code for edited 1st info block - ETHNICTY
+	
+	//**End** Code for edited 1st info block - ETHNICTY
+}
 };
 }

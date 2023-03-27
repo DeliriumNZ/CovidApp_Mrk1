@@ -20,6 +20,8 @@ namespace TaxiApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for DashBoard
@@ -38,9 +40,6 @@ namespace TaxiApp {
 		{
 			InitializeComponent();
 			lbEmailBuff->Text = Email;
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 		/*
 		DashBoard(String^ Username)
@@ -214,20 +213,15 @@ namespace TaxiApp {
 
 		}
 #pragma endregion
-public:
-	property String^ LabelText {
-		String^ get() {
-			return lbEmailBuff->Text;
-		}
-	}
+
 //User Details Button	
 	private: System::String^ Username;
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Username = label1->Text;
-		UserDetails^ detailsForm = gcnew UserDetails(Username);
+	Username = lbEmailBuff->Text;
+		UserDetails^ detailsForm = gcnew UserDetails();
+		detailsForm->SetEmailLabel(this->LabelText);
 		detailsForm->Show();
 	}
-
 private: System::Void btnRecordsTest_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserRecords^ recordsForm = gcnew UserRecords();
 	recordsForm->Show();
@@ -245,6 +239,13 @@ private: System::Void btnReportBug_Click(System::Object^ sender, System::EventAr
 	reportBugForm->Show();
 }
 
+
+public:
+	property String^ LabelText {
+		String^ get() {
+			return lbEmailBuff->Text;
+		}
+	}
 public:
 	property String^ Email {
 		String^ get() {
@@ -255,19 +256,21 @@ public:
 		}
 	}
 private: System::Void DashBoard_Shown(System::Object^ sender, System::EventArgs^ e) {
-	std::ifstream inputFile("Nathan@email.com_User_Data.txt");
+
+	std::string email = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std::ifstream inputFile(email +"_User_Data.txt");
 	std::string line;
+	//Line 1 & 2 of file skipped
 	std::getline(inputFile, line);
 	std::getline(inputFile, line);
-	//^^ Line 1 & 2 of file skipped
-	std::getline(inputFile, line);
-	//^^ Reading line 3, location of user name
+	//Reading line 3, location of user name
+	std::getline(inputFile, line);	
 	inputFile.close();
 
+	//This makes the "User Name Here" label display user's name.
 	String^ TEST = msclr::interop::marshal_as<System::String^>(line);
 	label1->Text = TEST;
-
-	Username = label1->Text;	
+	Username = label1->Text;	//Cant remmeber what this does lol too scared to remove
 }
 
 };

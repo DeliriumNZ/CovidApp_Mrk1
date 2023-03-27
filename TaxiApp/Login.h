@@ -268,7 +268,6 @@ bool checkLogin(string email, string password)
 			return false; // Login failed
 		}
 
-private: System::String^ Username;
 
 private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 	string email = msclr::interop::marshal_as<std::string>(txtBoxUserName->Text);
@@ -287,10 +286,6 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 		getline(infile, line);
 		//^^ Reading line 3, location of user name
 		infile.close();
-		String^ labelText = msclr::interop::marshal_as<System::String^>(line);
-		//Makes buffer lable username
-		lbBuffer->Text = labelText;
-		Username = lbBuffer->Text;
 
 
 		DashBoard^ dashboardForm = gcnew DashBoard(txtBoxUserName->Text);
