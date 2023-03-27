@@ -1,6 +1,7 @@
 #pragma once
 #include "Register.h"
 #include "DashBoard.h"
+#include "AdminDash.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -194,6 +195,7 @@ namespace TaxiApp {
 			this->lbBuffer->Size = System::Drawing::Size(264, 13);
 			this->lbBuffer->TabIndex = 1;
 			this->lbBuffer->Text = L"This Label is a buffer and will hide when app is running";
+			this->lbBuffer->Visible = false;
 			// 
 			// label4
 			// 
@@ -290,6 +292,11 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
 		DashBoard^ dashboardForm = gcnew DashBoard(txtBoxUserName->Text);
 		dashboardForm->Show();
+	}
+	else if (email == "Admin" || password == "AdminPass")
+	{
+		AdminDash^ adminDashForm = gcnew AdminDash();
+		adminDashForm->Show();
 	}
 	else
 	{

@@ -206,8 +206,9 @@ namespace TaxiApp {
 			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
 			this->lbEmailBuff->Name = L"lbEmailBuff";
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
-			this->lbEmailBuff->TabIndex = 26;
+			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// UserDetails
 			// 
