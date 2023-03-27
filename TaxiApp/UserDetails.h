@@ -331,7 +331,7 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 	inputFileEthnicty.close();
 	//Display information
 	String^ ETHNICTY = msclr::interop::marshal_as<System::String^>(line5);
-	lbGender->Text = ETHNICTY;
+	lbEthnicty->Text = ETHNICTY;
 	//**End** Code for edited 1st info block - ETHNICTY
 
 }
