@@ -61,6 +61,8 @@ namespace TaxiApp {
 
 
 
+
+
 	protected:
 
 	protected:
@@ -275,8 +277,12 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	string email = msclr::interop::marshal_as<std::string>(txtBoxUserName->Text);
 	string password = msclr::interop::marshal_as<std::string>(txtBoxUserPass->Text);
 	
-
-	if (checkLogin(email, password))
+	if (email == "Admin" && password == "AdminPass")
+	{
+		AdminDash^ adminDashForm = gcnew AdminDash();
+		adminDashForm->Show();
+	}
+	else if (checkLogin(email, password))
 	{
 		//Reading the file to gain users username
 		string fileName = email + "_User_Data.txt";		
@@ -293,11 +299,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 		DashBoard^ dashboardForm = gcnew DashBoard(txtBoxUserName->Text);
 		dashboardForm->Show();
 	}
-	else if (email == "Admin" || password == "AdminPass")
-	{
-		AdminDash^ adminDashForm = gcnew AdminDash();
-		adminDashForm->Show();
-	}
+
 	else
 	{
 		MessageBox::Show("Invalid email or password");

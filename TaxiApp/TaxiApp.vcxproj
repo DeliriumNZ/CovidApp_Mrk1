@@ -124,6 +124,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdminDash.cpp" />
+    <ClCompile Include="AdminEditUserDets.cpp" />
+    <ClCompile Include="AdminMenu.cpp" />
+    <ClCompile Include="AdminQR.cpp" />
+    <ClCompile Include="AdminUserDoc.cpp" />
     <ClCompile Include="DashBoard.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="LoginForm.cpp" />
@@ -136,6 +140,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdminDash.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminEditUserDets.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminQR.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminUserDoc.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DashBoard.h">
@@ -166,6 +182,18 @@
   <ItemGroup>
     <EmbeddedResource Include="AdminDash.resx">
       <DependentUpon>AdminDash.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminEditUserDets.resx">
+      <DependentUpon>AdminEditUserDets.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminMenu.resx">
+      <DependentUpon>AdminMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminQR.resx">
+      <DependentUpon>AdminQR.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminUserDoc.resx">
+      <DependentUpon>AdminUserDoc.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.h</DependentUpon>

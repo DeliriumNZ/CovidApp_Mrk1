@@ -258,7 +258,7 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 
 	//**Start** Code for edited 1st info block - NAME
 	lbName->Text = NAME;
-	//**End** Code for edited 1st info block - NAME
+	
 	
 	//**Start** Code for edited 1st info block - ADDRESS
 	std::string address = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
@@ -276,7 +276,7 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 	String^ ADDRESS = msclr::interop::marshal_as<System::String^>(line2);
 	lbAddress->Text = ADDRESS;
 
-	//**End** Code for edited 1st info block - ADDRESS
+	
 	 
 	//**Start** Code for edited 1st info block - PHONE
 	std::string phone = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
@@ -296,7 +296,7 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 	//Display information
 	String^ PHONE = msclr::interop::marshal_as<System::String^>(line3);
 	lbPhone->Text = PHONE;
-	//**End** Code for edited 1st info block - PHONE
+
 
 	//**Start** Code for edited 1st info block - GENDER
 	std::string gender = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
@@ -314,7 +314,7 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 	//Display information
 	String^ GENDER = msclr::interop::marshal_as<System::String^>(line4);
 	lbGender->Text = GENDER;
-	//**End** Code for edited 1st info block - GENDER
+	
 	
 	//**Start** Code for edited 1st info block - ETHNICTY
 	std::string ethnicty = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
@@ -333,7 +333,7 @@ private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArg
 	//Display information
 	String^ ETHNICTY = msclr::interop::marshal_as<System::String^>(line5);
 	lbEthnicty->Text = ETHNICTY;
-	//**End** Code for edited 1st info block - ETHNICTY
+	
 
 }
 };
