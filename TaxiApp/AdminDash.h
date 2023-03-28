@@ -43,7 +43,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::TextBox^ tbSearch;
 	protected:
 	private: System::Windows::Forms::Button^ btnSearch;
-	private: System::Windows::Forms::Label^ lbTest;
+
 
 	private:
 		/// <summary>
@@ -61,7 +61,6 @@ namespace TaxiApp {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminDash::typeid));
 			this->tbSearch = (gcnew System::Windows::Forms::TextBox());
 			this->btnSearch = (gcnew System::Windows::Forms::Button());
-			this->lbTest = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// tbSearch
@@ -86,22 +85,12 @@ namespace TaxiApp {
 			this->btnSearch->UseVisualStyleBackColor = true;
 			this->btnSearch->Click += gcnew System::EventHandler(this, &AdminDash::btnSearch_Click);
 			// 
-			// lbTest
-			// 
-			this->lbTest->AutoSize = true;
-			this->lbTest->Location = System::Drawing::Point(189, 426);
-			this->lbTest->Name = L"lbTest";
-			this->lbTest->Size = System::Drawing::Size(117, 13);
-			this->lbTest->TabIndex = 2;
-			this->lbTest->Text = L"PLACEHOLDER TEXT";
-			// 
 			// AdminDash
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
-			this->Controls->Add(this->lbTest);
 			this->Controls->Add(this->btnSearch);
 			this->Controls->Add(this->tbSearch);
 			this->Name = L"AdminDash";
