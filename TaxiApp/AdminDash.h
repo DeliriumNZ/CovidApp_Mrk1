@@ -133,7 +133,6 @@ public:
 		{
 			MessageBox::Show("User not found!");
 		}
-
 	}
 	};
 }

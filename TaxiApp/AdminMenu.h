@@ -1,4 +1,5 @@
 #pragma once
+#include "AdminEditUserDets.h"
 
 #include <fstream>
 #include <iostream>
@@ -122,6 +123,7 @@ namespace TaxiApp {
 			this->btnDetails->TabIndex = 0;
 			this->btnDetails->Text = L"Details";
 			this->btnDetails->UseVisualStyleBackColor = true;
+			this->btnDetails->Click += gcnew System::EventHandler(this, &AdminMenu::btnDetails_Click);
 			// 
 			// btnTestRecords
 			// 
@@ -175,5 +177,20 @@ public://This recives the email text from AdminDash and stores it in a hidden la
 		lbEmailBuff->Text = Text;
 	}
 
-	};
+
+	//Sending email over to AdminEditUserDets form to assist in opening user details file.
+public:
+	property String^ lbEmailBuffTextv2
+	{
+		String^ get()
+		{
+			return lbEmailBuff->Text;
+		}
+	}
+	private: System::Void btnDetails_Click(System::Object^ sender, System::EventArgs^ e) {
+		AdminEditUserDets^ adminEditForm = gcnew AdminEditUserDets();
+		adminEditForm->SetEmailText(lbEmailBuff->Text);
+		adminEditForm->Show();
+	}
+};
 }
