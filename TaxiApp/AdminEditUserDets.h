@@ -1,5 +1,10 @@
 #pragma once
 
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <msclr/marshal_cppstd.h>
+
 namespace TaxiApp {
 
 	using namespace System;
@@ -36,8 +41,12 @@ namespace TaxiApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ tbDisplayData;
+	protected:
+
 	public: System::Windows::Forms::Label^ lbEmailBuff;
+	private: System::Windows::Forms::Button^ btnEdit;
+	public:
 	private:
 	protected:
 
@@ -55,17 +64,20 @@ namespace TaxiApp {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminEditUserDets::typeid));
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->tbDisplayData = (gcnew System::Windows::Forms::TextBox());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
+			this->btnEdit = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// tbDisplayData
 			// 
-			this->textBox1->Location = System::Drawing::Point(108, 316);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(311, 345);
-			this->textBox1->TabIndex = 0;
+			this->tbDisplayData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tbDisplayData->Location = System::Drawing::Point(91, 316);
+			this->tbDisplayData->Multiline = true;
+			this->tbDisplayData->Name = L"tbDisplayData";
+			this->tbDisplayData->Size = System::Drawing::Size(328, 345);
+			this->tbDisplayData->TabIndex = 0;
 			// 
 			// lbEmailBuff
 			// 
@@ -76,14 +88,25 @@ namespace TaxiApp {
 			this->lbEmailBuff->TabIndex = 1;
 			this->lbEmailBuff->Text = L"Email Buff";
 			// 
+			// btnEdit
+			// 
+			this->btnEdit->Location = System::Drawing::Point(344, 248);
+			this->btnEdit->Name = L"btnEdit";
+			this->btnEdit->Size = System::Drawing::Size(75, 23);
+			this->btnEdit->TabIndex = 2;
+			this->btnEdit->Text = L"Save Edits";
+			this->btnEdit->UseVisualStyleBackColor = true;
+			this->btnEdit->Click += gcnew System::EventHandler(this, &AdminEditUserDets::btnEdit_Click);
+			// 
 			// AdminEditUserDets
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->btnEdit);
 			this->Controls->Add(this->lbEmailBuff);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->tbDisplayData);
 			this->Name = L"AdminEditUserDets";
 			this->Text = L"AdminEditUserDets";
 			this->Load += gcnew System::EventHandler(this, &AdminEditUserDets::AdminEditUserDets_Load);
@@ -106,8 +129,26 @@ namespace TaxiApp {
 
 		if (myFile.is_open())
 		{
-
+			std::string fileContents((std::istreambuf_iterator<char>(myFile)), std::istreambuf_iterator<char>());
+			System::String^ textBoxContents = gcnew System::String(fileContents.c_str());
+			tbDisplayData->Text = textBoxContents;
+			myFile.close();
 		}
 	}
-	};
+	private: System::Void btnEdit_Click(System::Object^ sender, System::EventArgs^ e) {
+		string UserInfoSave = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+		string line2;
+		string fileName2 = UserInfoSave + "_User_Data.txt";
+		ofstream myFile2(fileName2);
+
+		if (myFile2.is_open())
+		{
+			std::string fileContents = msclr::interop::marshal_as<std::string>(tbDisplayData->Text);
+			myFile2 << fileContents;
+			myFile2.close();
+
+			MessageBox::Show("Saved!");
+		}
+	}
+};
 }
