@@ -1,5 +1,9 @@
 #pragma once
 
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <msclr/marshal_cppstd.h>
 namespace TaxiApp {
 
 	using namespace System;
@@ -8,6 +12,8 @@ namespace TaxiApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for AdminMenu
@@ -22,6 +28,11 @@ namespace TaxiApp {
 			//TODO: Add the constructor code here
 			//
 		}
+		AdminMenu(String^ lbEmailBuffText)
+		{
+			InitializeComponent();
+			lbEmailBuff->Text = lbEmailBuffText;
+		}
 
 	protected:
 		/// <summary>
@@ -34,9 +45,17 @@ namespace TaxiApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ btnAdminDetails;
+
 	private: System::Windows::Forms::Button^ btnSearch;
-	private: System::Windows::Forms::TextBox^ tbSearch;
+	public: System::Windows::Forms::TextBox^ tbSearch2;
+	public: System::Windows::Forms::Label^ lbEmailBuff;
+	private: System::Windows::Forms::Button^ btnDetails;
+	private: System::Windows::Forms::Button^ btnTestRecords;
+	private: System::Windows::Forms::Button^ btnQRCode;
+	public:
+	private:
+
+
 	protected:
 
 	private:
@@ -53,21 +72,13 @@ namespace TaxiApp {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminMenu::typeid));
-			this->btnAdminDetails = (gcnew System::Windows::Forms::Button());
 			this->btnSearch = (gcnew System::Windows::Forms::Button());
-			this->tbSearch = (gcnew System::Windows::Forms::TextBox());
+			this->tbSearch2 = (gcnew System::Windows::Forms::TextBox());
+			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
+			this->btnDetails = (gcnew System::Windows::Forms::Button());
+			this->btnTestRecords = (gcnew System::Windows::Forms::Button());
+			this->btnQRCode = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
-			// 
-			// btnAdminDetails
-			// 
-			this->btnAdminDetails->BackColor = System::Drawing::Color::Transparent;
-			this->btnAdminDetails->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->btnAdminDetails->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnAdminDetails->Location = System::Drawing::Point(81, 405);
-			this->btnAdminDetails->Name = L"btnAdminDetails";
-			this->btnAdminDetails->Size = System::Drawing::Size(359, 65);
-			this->btnAdminDetails->TabIndex = 0;
-			this->btnAdminDetails->UseVisualStyleBackColor = false;
 			// 
 			// btnSearch
 			// 
@@ -80,15 +91,63 @@ namespace TaxiApp {
 			this->btnSearch->Text = L"Search";
 			this->btnSearch->UseVisualStyleBackColor = true;
 			// 
-			// tbSearch
+			// tbSearch2
 			// 
-			this->tbSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tbSearch2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tbSearch->Location = System::Drawing::Point(81, 239);
-			this->tbSearch->Multiline = true;
-			this->tbSearch->Name = L"tbSearch";
-			this->tbSearch->Size = System::Drawing::Size(288, 50);
-			this->tbSearch->TabIndex = 2;
+			this->tbSearch2->Location = System::Drawing::Point(81, 239);
+			this->tbSearch2->Multiline = true;
+			this->tbSearch2->Name = L"tbSearch2";
+			this->tbSearch2->Size = System::Drawing::Size(288, 50);
+			this->tbSearch2->TabIndex = 2;
+			// 
+			// lbEmailBuff
+			// 
+			this->lbEmailBuff->AutoSize = true;
+			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
+			this->lbEmailBuff->Name = L"lbEmailBuff";
+			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
+			this->lbEmailBuff->TabIndex = 0;
+			this->lbEmailBuff->Text = L"Email Buff";
+			// 
+			// btnDetails
+			// 
+			this->btnDetails->BackColor = System::Drawing::Color::Transparent;
+			this->btnDetails->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDetails->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnDetails->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnDetails->Location = System::Drawing::Point(77, 405);
+			this->btnDetails->Name = L"btnDetails";
+			this->btnDetails->Size = System::Drawing::Size(368, 64);
+			this->btnDetails->TabIndex = 0;
+			this->btnDetails->Text = L"Details";
+			this->btnDetails->UseVisualStyleBackColor = true;
+			// 
+			// btnTestRecords
+			// 
+			this->btnTestRecords->BackColor = System::Drawing::Color::Transparent;
+			this->btnTestRecords->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnTestRecords->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnTestRecords->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnTestRecords->Location = System::Drawing::Point(75, 502);
+			this->btnTestRecords->Name = L"btnTestRecords";
+			this->btnTestRecords->Size = System::Drawing::Size(366, 64);
+			this->btnTestRecords->TabIndex = 0;
+			this->btnTestRecords->Text = L"  Test Records";
+			this->btnTestRecords->UseVisualStyleBackColor = false;
+			// 
+			// btnQRCode
+			// 
+			this->btnQRCode->BackColor = System::Drawing::Color::Transparent;
+			this->btnQRCode->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnQRCode->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnQRCode->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnQRCode->Location = System::Drawing::Point(76, 594);
+			this->btnQRCode->Name = L"btnQRCode";
+			this->btnQRCode->Size = System::Drawing::Size(369, 64);
+			this->btnQRCode->TabIndex = 0;
+			this->btnQRCode->Text = L"QR Code";
+			this->btnQRCode->UseVisualStyleBackColor = false;
 			// 
 			// AdminMenu
 			// 
@@ -96,9 +155,12 @@ namespace TaxiApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->btnQRCode);
+			this->Controls->Add(this->btnTestRecords);
+			this->Controls->Add(this->btnDetails);
+			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->btnSearch);
-			this->Controls->Add(this->tbSearch);
-			this->Controls->Add(this->btnAdminDetails);
+			this->Controls->Add(this->tbSearch2);
 			this->Name = L"AdminMenu";
 			this->Text = L"AdminMenu";
 			this->ResumeLayout(false);
@@ -106,5 +168,12 @@ namespace TaxiApp {
 
 		}
 #pragma endregion
+
+public://This recives the email text from AdminDash and stores it in a hidden label.
+	void SetEmailText(System::String^ Text)
+	{
+		lbEmailBuff->Text = Text;
+	}
+
 	};
 }

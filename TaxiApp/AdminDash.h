@@ -42,7 +42,9 @@ namespace TaxiApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ tbSearch;
+	public: System::Windows::Forms::TextBox^ tbSearch;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::Button^ btnSearch;
 
@@ -103,7 +105,15 @@ namespace TaxiApp {
 		}
 #pragma endregion
 
-
+//Sending email over to AdminMenu form to assist in opening user details file. pt1
+public:
+	property String^ lbEmailBuffText
+	{
+		String^ get()
+		{
+			return tbSearch->Text;
+		}
+	}
 
 
 	private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -116,6 +126,7 @@ namespace TaxiApp {
 		{
 			MessageBox::Show("User found!");
 			AdminMenu^ adminMenuForm = gcnew AdminMenu();
+			adminMenuForm->SetEmailText(tbSearch->Text); //Sending email over to AdminMenu pt2
 			adminMenuForm->Show();
 		}
 		else
