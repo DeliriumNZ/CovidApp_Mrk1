@@ -47,12 +47,14 @@ namespace TaxiApp {
 			}
 		}
 
-	private: System::Windows::Forms::Button^ btnSearch;
-	public: System::Windows::Forms::TextBox^ tbSearch2;
+
+
 	public: System::Windows::Forms::Label^ lbEmailBuff;
 	private: System::Windows::Forms::Button^ btnDetails;
 	private: System::Windows::Forms::Button^ btnTestRecords;
 	private: System::Windows::Forms::Button^ btnQRCode;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ lbUser;
 	public:
 	private:
 
@@ -73,34 +75,13 @@ namespace TaxiApp {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminMenu::typeid));
-			this->btnSearch = (gcnew System::Windows::Forms::Button());
-			this->tbSearch2 = (gcnew System::Windows::Forms::TextBox());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->btnDetails = (gcnew System::Windows::Forms::Button());
 			this->btnTestRecords = (gcnew System::Windows::Forms::Button());
 			this->btnQRCode = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lbUser = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
-			// 
-			// btnSearch
-			// 
-			this->btnSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnSearch->Location = System::Drawing::Point(375, 239);
-			this->btnSearch->Name = L"btnSearch";
-			this->btnSearch->Size = System::Drawing::Size(66, 50);
-			this->btnSearch->TabIndex = 3;
-			this->btnSearch->Text = L"Search";
-			this->btnSearch->UseVisualStyleBackColor = true;
-			// 
-			// tbSearch2
-			// 
-			this->tbSearch2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tbSearch2->Location = System::Drawing::Point(81, 239);
-			this->tbSearch2->Multiline = true;
-			this->tbSearch2->Name = L"tbSearch2";
-			this->tbSearch2->Size = System::Drawing::Size(288, 50);
-			this->tbSearch2->TabIndex = 2;
 			// 
 			// lbEmailBuff
 			// 
@@ -151,20 +132,45 @@ namespace TaxiApp {
 			this->btnQRCode->Text = L"QR Code";
 			this->btnQRCode->UseVisualStyleBackColor = false;
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->label1->Location = System::Drawing::Point(110, 121);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(65, 24);
+			this->label1->TabIndex = 16;
+			this->label1->Text = L"User:";
+			// 
+			// lbUser
+			// 
+			this->lbUser->AutoSize = true;
+			this->lbUser->BackColor = System::Drawing::Color::Transparent;
+			this->lbUser->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->lbUser->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->lbUser->Location = System::Drawing::Point(110, 160);
+			this->lbUser->Name = L"lbUser";
+			this->lbUser->Size = System::Drawing::Size(176, 24);
+			this->lbUser->TabIndex = 15;
+			this->lbUser->Text = L"User Name Here";
+			// 
 			// AdminMenu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->lbUser);
 			this->Controls->Add(this->btnQRCode);
 			this->Controls->Add(this->btnTestRecords);
 			this->Controls->Add(this->btnDetails);
 			this->Controls->Add(this->lbEmailBuff);
-			this->Controls->Add(this->btnSearch);
-			this->Controls->Add(this->tbSearch2);
 			this->Name = L"AdminMenu";
 			this->Text = L"AdminMenu";
+			this->Load += gcnew System::EventHandler(this, &AdminMenu::AdminMenu_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -187,10 +193,29 @@ public:
 			return lbEmailBuff->Text;
 		}
 	}
+
+	private: System::Void AdminMenu_Load(System::Object^ sender, System::EventArgs^ e) {
+
+		string UserInfoLoad = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+		string line;
+		std::ifstream inputFile(UserInfoLoad + "_User_Data.txt");
+		//Line 1 & 2 of file skipped
+		std::getline(inputFile, line);
+		std::getline(inputFile, line);
+		//Reading line 3, location of user name
+		std::getline(inputFile, line);
+		inputFile.close();
+		//This makes the "User Name Here" label display user's name.
+		String^ NAME = msclr::interop::marshal_as<System::String^>(line);
+		lbUser->Text = NAME;
+	}
+
+//Goes to Details Edit Page
 	private: System::Void btnDetails_Click(System::Object^ sender, System::EventArgs^ e) {
 		AdminEditUserDets^ adminEditForm = gcnew AdminEditUserDets();
 		adminEditForm->SetEmailText(lbEmailBuff->Text);
 		adminEditForm->Show();
 	}
+
 };
 }

@@ -46,6 +46,9 @@ namespace TaxiApp {
 
 	public: System::Windows::Forms::Label^ lbEmailBuff;
 	private: System::Windows::Forms::Button^ btnEdit;
+	private: System::Windows::Forms::Label^ lbUser;
+	private: System::Windows::Forms::Label^ label1;
+
 	public:
 	private:
 	protected:
@@ -67,6 +70,8 @@ namespace TaxiApp {
 			this->tbDisplayData = (gcnew System::Windows::Forms::TextBox());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->btnEdit = (gcnew System::Windows::Forms::Button());
+			this->lbUser = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// tbDisplayData
@@ -90,7 +95,7 @@ namespace TaxiApp {
 			// 
 			// btnEdit
 			// 
-			this->btnEdit->Location = System::Drawing::Point(344, 248);
+			this->btnEdit->Location = System::Drawing::Point(223, 254);
 			this->btnEdit->Name = L"btnEdit";
 			this->btnEdit->Size = System::Drawing::Size(75, 23);
 			this->btnEdit->TabIndex = 2;
@@ -98,12 +103,38 @@ namespace TaxiApp {
 			this->btnEdit->UseVisualStyleBackColor = true;
 			this->btnEdit->Click += gcnew System::EventHandler(this, &AdminEditUserDets::btnEdit_Click);
 			// 
+			// lbUser
+			// 
+			this->lbUser->AutoSize = true;
+			this->lbUser->BackColor = System::Drawing::Color::Transparent;
+			this->lbUser->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->lbUser->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->lbUser->Location = System::Drawing::Point(110, 160);
+			this->lbUser->Name = L"lbUser";
+			this->lbUser->Size = System::Drawing::Size(176, 24);
+			this->lbUser->TabIndex = 13;
+			this->lbUser->Text = L"User Name Here";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->label1->Location = System::Drawing::Point(110, 121);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(65, 24);
+			this->label1->TabIndex = 14;
+			this->label1->Text = L"User:";
+			// 
 			// AdminEditUserDets
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->lbUser);
 			this->Controls->Add(this->btnEdit);
 			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->tbDisplayData);
@@ -120,7 +151,7 @@ namespace TaxiApp {
 		{
 			lbEmailBuff->Text = Text;
 		}
-
+	//As soon as the form loads, the whole txt file is shown in the textbox.
 	private: System::Void AdminEditUserDets_Load(System::Object^ sender, System::EventArgs^ e) {
 		string UserInfoLoad = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
 		string line;
@@ -134,7 +165,21 @@ namespace TaxiApp {
 			tbDisplayData->Text = textBoxContents;
 			myFile.close();
 		}
+
+		
+		std::ifstream inputFile(UserInfoLoad + "_User_Data.txt");
+		//Line 1 & 2 of file skipped
+		std::getline(inputFile, line);
+		std::getline(inputFile, line);
+		//Reading line 3, location of user name
+		std::getline(inputFile, line);
+		inputFile.close();
+		//This makes the "User Name Here" label display user's name.
+		String^ NAME = msclr::interop::marshal_as<System::String^>(line);
+		lbUser->Text = NAME;
 	}
+
+	//Button saves the text back into the text file.
 	private: System::Void btnEdit_Click(System::Object^ sender, System::EventArgs^ e) {
 		string UserInfoSave = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
 		string line2;
@@ -146,7 +191,6 @@ namespace TaxiApp {
 			std::string fileContents = msclr::interop::marshal_as<std::string>(tbDisplayData->Text);
 			myFile2 << fileContents;
 			myFile2.close();
-
 			MessageBox::Show("Saved!");
 		}
 	}
