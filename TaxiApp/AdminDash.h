@@ -1,4 +1,6 @@
 #pragma once
+#include "AdminMenu.h"
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -101,27 +103,7 @@ namespace TaxiApp {
 		}
 #pragma endregion
 
-		/*
-		bool checkLogin(string tbSearchText)
-		{
-			string line;
-			string fileName = tbSearchText + "_User_Data.txt";
-			ifstream myFile(fileName);
 
-			if (myFile.is_open())
-			{
-				while (getline(myFile, line))
-				{
-					if (line == tbSearchText)
-					{
-						getline(myFile, line);
-					}
-				}
-				myFile.close();
-			}
-			return false; // Login failed
-		}
-		*/
 
 
 	private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -133,6 +115,8 @@ namespace TaxiApp {
 		if (myFile.is_open())
 		{
 			MessageBox::Show("User found!");
+			AdminMenu^ adminMenuForm = gcnew AdminMenu();
+			adminMenuForm->Show();
 		}
 		else
 		{
