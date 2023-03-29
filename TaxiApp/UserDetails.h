@@ -208,7 +208,6 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
-			this->lbEmailBuff->Visible = false;
 			// 
 			// UserDetails
 			// 
@@ -237,6 +236,21 @@ public:
 	void SetEmailLabel(String^ LabelText)
 	{
 		lbEmailBuff->Text = LabelText;
+	}
+	public:
+		property String^ LabelText {
+			String^ get() {
+				return lbEmailBuff->Text;
+			}
+		}
+public:
+	property String^ Email {
+		String^ get() {
+			return lbEmailBuff->Text;
+		}
+		void set(String^ value) {
+			lbEmailBuff->Text = value;
+		}
 	}
 
 

@@ -191,7 +191,6 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
-			this->lbEmailBuff->Visible = false;
 			// 
 			// DashBoard
 			// 
@@ -237,16 +236,17 @@ private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^
 }
 private: System::Void btnReportBug_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReportBug^ reportBugForm = gcnew ReportBug();
-	reportBugForm->Show();
+	reportBugForm->SetEmailLabel(this->LabelText);
+	reportBugForm->ShowDialog();
 }
 
 
-public:
-	property String^ LabelText {
-		String^ get() {
-			return lbEmailBuff->Text;
-		}
-	}
+public://Passes email buffer to other forms.
+	property String^ LabelText {String^ get() { return lbEmailBuff->Text;}}
+
+
+//This code doesnt feel needed anymore. Commented out just incase something breaks 29/03/23
+/*  
 public:
 	property String^ Email {
 		String^ get() {
@@ -256,6 +256,10 @@ public:
 			lbEmailBuff->Text = value;
 		}
 	}
+*/
+
+
+//Auto fill all labels to show user info
 private: System::Void DashBoard_Shown(System::Object^ sender, System::EventArgs^ e) {
 
 	std::string email = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
