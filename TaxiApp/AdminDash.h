@@ -47,6 +47,9 @@ namespace TaxiApp {
 
 	protected:
 	private: System::Windows::Forms::Button^ btnSearch;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
 
 
 	private:
@@ -65,6 +68,9 @@ namespace TaxiApp {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminDash::typeid));
 			this->tbSearch = (gcnew System::Windows::Forms::TextBox());
 			this->btnSearch = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// tbSearch
@@ -89,12 +95,51 @@ namespace TaxiApp {
 			this->btnSearch->UseVisualStyleBackColor = true;
 			this->btnSearch->Click += gcnew System::EventHandler(this, &AdminDash::btnSearch_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->label1->Location = System::Drawing::Point(77, 366);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(353, 24);
+			this->label1->TabIndex = 17;
+			this->label1->Text = L"Enter the users full Email  address";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->label2->Location = System::Drawing::Point(77, 390);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(329, 24);
+			this->label2->TabIndex = 18;
+			this->label2->Text = L"and then push search to display";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::Transparent;
+			this->label3->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->label3->Location = System::Drawing::Point(77, 414);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(151, 24);
+			this->label3->TabIndex = 19;
+			this->label3->Text = L"more options.";
+			// 
 			// AdminDash
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnSearch);
 			this->Controls->Add(this->tbSearch);
 			this->Name = L"AdminDash";
@@ -124,10 +169,9 @@ public:
 
 		if (myFile.is_open())
 		{
-			MessageBox::Show("User found!");
 			AdminMenu^ adminMenuForm = gcnew AdminMenu();
 			adminMenuForm->SetEmailText(tbSearch->Text); //Sending email over to AdminMenu pt2
-			adminMenuForm->Show();
+			adminMenuForm->ShowDialog(); //NOTE CHANGE ALL ->SHOW TO ->SHOWDIALOG!!!
 		}
 		else
 		{

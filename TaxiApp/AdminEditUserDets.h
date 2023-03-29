@@ -41,13 +41,14 @@ namespace TaxiApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ tbDisplayData;
+
 	protected:
 
 	public: System::Windows::Forms::Label^ lbEmailBuff;
 	private: System::Windows::Forms::Button^ btnEdit;
 	private: System::Windows::Forms::Label^ lbUser;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 
 	public:
 	private:
@@ -67,22 +68,12 @@ namespace TaxiApp {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AdminEditUserDets::typeid));
-			this->tbDisplayData = (gcnew System::Windows::Forms::TextBox());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->btnEdit = (gcnew System::Windows::Forms::Button());
 			this->lbUser = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->SuspendLayout();
-			// 
-			// tbDisplayData
-			// 
-			this->tbDisplayData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tbDisplayData->Location = System::Drawing::Point(91, 316);
-			this->tbDisplayData->Multiline = true;
-			this->tbDisplayData->Name = L"tbDisplayData";
-			this->tbDisplayData->Size = System::Drawing::Size(328, 345);
-			this->tbDisplayData->TabIndex = 0;
 			// 
 			// lbEmailBuff
 			// 
@@ -127,17 +118,26 @@ namespace TaxiApp {
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"User:";
 			// 
+			// richTextBox1
+			// 
+			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F));
+			this->richTextBox1->Location = System::Drawing::Point(86, 297);
+			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->Size = System::Drawing::Size(348, 340);
+			this->richTextBox1->TabIndex = 15;
+			this->richTextBox1->Text = L"";
+			// 
 			// AdminEditUserDets
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->lbUser);
 			this->Controls->Add(this->btnEdit);
 			this->Controls->Add(this->lbEmailBuff);
-			this->Controls->Add(this->tbDisplayData);
 			this->Name = L"AdminEditUserDets";
 			this->Text = L"AdminEditUserDets";
 			this->Load += gcnew System::EventHandler(this, &AdminEditUserDets::AdminEditUserDets_Load);
@@ -162,7 +162,8 @@ namespace TaxiApp {
 		{
 			std::string fileContents((std::istreambuf_iterator<char>(myFile)), std::istreambuf_iterator<char>());
 			System::String^ textBoxContents = gcnew System::String(fileContents.c_str());
-			tbDisplayData->Text = textBoxContents;
+			//tbDisplayData->Text = textBoxContents;
+			richTextBox1->Text = textBoxContents;
 			myFile.close();
 		}
 
@@ -188,10 +189,14 @@ namespace TaxiApp {
 
 		if (myFile2.is_open())
 		{
-			std::string fileContents = msclr::interop::marshal_as<std::string>(tbDisplayData->Text);
+			std::string fileContents = msclr::interop::marshal_as<std::string>(richTextBox1->Text);
 			myFile2 << fileContents;
 			myFile2.close();
 			MessageBox::Show("Saved!");
+		}
+		else
+		{
+			MessageBox::Show("Failed to Open!");
 		}
 	}
 };

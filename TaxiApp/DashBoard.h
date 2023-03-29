@@ -112,7 +112,7 @@ namespace TaxiApp {
 			this->button1->BackColor = System::Drawing::Color::Gold;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
 			this->button1->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->Location = System::Drawing::Point(79, 257);
+			this->button1->Location = System::Drawing::Point(77, 255);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(364, 65);
 			this->button1->TabIndex = 0;
