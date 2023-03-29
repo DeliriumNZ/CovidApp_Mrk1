@@ -185,6 +185,23 @@ private: System::Void btnSend_Click(System::Object^ sender, System::EventArgs^ e
 	string fileName = BugReportSum + "_BugReport.txt";
 	ofstream myFile(fileName);
 
+	if (myFile.is_open())
+	{
+		std::string fileSum = msclr::interop::marshal_as<std::string>(rtbSummary->Text);
+		std::string fileProb = msclr::interop::marshal_as<std::string>(rtbProblem->Text);
+		std::string fileUser = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+
+		myFile << fileSum;
+		myFile << fileProb;
+		myFile << fileUser;
+		myFile.close();
+
+		MessageBox::Show("Saved!");
+	}
+	else
+	{
+		MessageBox::Show("Failed to Open!");//Open or create?
+	}
 }
 };
 }
