@@ -178,7 +178,7 @@ public:
 		lbEmailBuff->Text = LabelText;
 	}
 private: System::Void btnSend_Click(System::Object^ sender, System::EventArgs^ e) {
-	//Take rtbSummary +  rtbProblem and store that into a txt file named "rtbSummary_BugReport.txt"
+	//Take rtbSummary +  rtbProblem and store that into a txt file named "rtbSummary_BugReport.txt" .
 
 	string BugReportSum = msclr::interop::marshal_as<std::string>(rtbSummary->Text);
 	string line;
