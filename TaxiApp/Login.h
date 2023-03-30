@@ -203,9 +203,11 @@ namespace TaxiApp {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(127, 283);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(32, 13);
+			this->label4->Size = System::Drawing::Size(37, 13);
 			this->label4->TabIndex = 0;
 			this->label4->Text = L"Email";
 			// 
@@ -213,9 +215,11 @@ namespace TaxiApp {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BackColor = System::Drawing::Color::Transparent;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(127, 383);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(53, 13);
+			this->label5->Size = System::Drawing::Size(61, 13);
 			this->label5->TabIndex = 12;
 			this->label5->Text = L"Password";
 			// 

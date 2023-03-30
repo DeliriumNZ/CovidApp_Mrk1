@@ -224,10 +224,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 private: System::Void btnRecordsTest_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserRecords^ recordsForm = gcnew UserRecords();
+	recordsForm->SetEmailLabel(this->LabelText);
 	recordsForm->Show();
 }
 private: System::Void btnVaccine_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserVaccine^ vaccineForm = gcnew UserVaccine();
+	vaccineForm->SetEmailLabel(this->LabelText);
 	vaccineForm->Show();
 }
 private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^ e) {
