@@ -280,7 +280,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	if (email == "Admin" && password == "AdminPass")
 	{
 		AdminDash^ adminDashForm = gcnew AdminDash();
-		adminDashForm->Show();
+		adminDashForm->ShowDialog();
 	}
 	else if (checkLogin(email, password))
 	{
@@ -297,7 +297,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
 
 		DashBoard^ dashboardForm = gcnew DashBoard(txtBoxUserName->Text);
-		dashboardForm->Show();
+		dashboardForm->ShowDialog();
 	}
 
 	else
@@ -319,7 +319,7 @@ private: System::Void lbSignUp_Click(System::Object^ sender, System::EventArgs^ 
 	
 	Register^ regForm = gcnew Register();
 	//Open Register window
-	regForm->Show();
+	regForm->ShowDialog();
 
 }
 private: System::Void txtBoxUserName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
