@@ -49,7 +49,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ lbUserNameTop;
 	protected:
 
-	private: System::Windows::Forms::Button^ btnRegister;
+
 	private: System::Windows::Forms::Label^ lbName;
 	private: System::Windows::Forms::Label^ lbAddress;
 	private: System::Windows::Forms::Label^ lbPhone;
@@ -75,7 +75,6 @@ namespace TaxiApp {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UserDetails::typeid));
 			this->lbUserNameTop = (gcnew System::Windows::Forms::Label());
-			this->btnRegister = (gcnew System::Windows::Forms::Button());
 			this->lbName = (gcnew System::Windows::Forms::Label());
 			this->lbAddress = (gcnew System::Windows::Forms::Label());
 			this->lbPhone = (gcnew System::Windows::Forms::Label());
@@ -96,19 +95,6 @@ namespace TaxiApp {
 			this->lbUserNameTop->Size = System::Drawing::Size(176, 24);
 			this->lbUserNameTop->TabIndex = 12;
 			this->lbUserNameTop->Text = L"User Name Here";
-			// 
-			// btnRegister
-			// 
-			this->btnRegister->BackColor = System::Drawing::Color::Gold;
-			this->btnRegister->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnRegister->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 18));
-			this->btnRegister->ForeColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->btnRegister->Location = System::Drawing::Point(342, 176);
-			this->btnRegister->Name = L"btnRegister";
-			this->btnRegister->Size = System::Drawing::Size(99, 38);
-			this->btnRegister->TabIndex = 13;
-			this->btnRegister->Text = L"Logout";
-			this->btnRegister->UseVisualStyleBackColor = false;
 			// 
 			// lbName
 			// 
@@ -208,6 +194,7 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// UserDetails
 			// 
@@ -222,7 +209,6 @@ namespace TaxiApp {
 			this->Controls->Add(this->lbPhone);
 			this->Controls->Add(this->lbAddress);
 			this->Controls->Add(this->lbName);
-			this->Controls->Add(this->btnRegister);
 			this->Controls->Add(this->lbUserNameTop);
 			this->Name = L"UserDetails";
 			this->Text = L"UserDetails";

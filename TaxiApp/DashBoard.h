@@ -129,7 +129,7 @@ namespace TaxiApp {
 			this->btnRecordsTest->Name = L"btnRecordsTest";
 			this->btnRecordsTest->Size = System::Drawing::Size(364, 65);
 			this->btnRecordsTest->TabIndex = 1;
-			this->btnRecordsTest->Text = L"Records Test";
+			this->btnRecordsTest->Text = L"Test Records";
 			this->btnRecordsTest->UseVisualStyleBackColor = false;
 			this->btnRecordsTest->Click += gcnew System::EventHandler(this, &DashBoard::btnRecordsTest_Click);
 			// 
@@ -191,6 +191,7 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// DashBoard
 			// 

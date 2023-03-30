@@ -83,13 +83,14 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 1;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// btnEdit
 			// 
 			this->btnEdit->Location = System::Drawing::Point(223, 254);
 			this->btnEdit->Name = L"btnEdit";
 			this->btnEdit->Size = System::Drawing::Size(75, 23);
-			this->btnEdit->TabIndex = 2;
+			this->btnEdit->TabIndex = 1;
 			this->btnEdit->Text = L"Save Edits";
 			this->btnEdit->UseVisualStyleBackColor = true;
 			this->btnEdit->Click += gcnew System::EventHandler(this, &AdminEditUserDets::btnEdit_Click);
@@ -124,7 +125,7 @@ namespace TaxiApp {
 			this->richTextBox1->Location = System::Drawing::Point(86, 297);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(348, 340);
-			this->richTextBox1->TabIndex = 15;
+			this->richTextBox1->TabIndex = 2;
 			this->richTextBox1->Text = L"";
 			// 
 			// AdminEditUserDets

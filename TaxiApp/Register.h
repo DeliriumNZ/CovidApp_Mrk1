@@ -270,9 +270,9 @@ namespace TaxiApp {
 		}
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+		//This does nothing at all but when I remove it, the code doesn't run... DO NOT REMOVE
 	}
-	private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
@@ -280,8 +280,7 @@ private: System::Void txtBoxUserName_TextChanged(System::Object^ sender, System:
 	if (txtBoxUserName->Text == "Full Name")
 	{
 		txtBoxUserName->Text = "";
-
-		txtBoxUserName->ForeColor = ForeColor.Black;
+		txtBoxUserName->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxUserName_Leave(System::Object^ sender, System::EventArgs^ e) {

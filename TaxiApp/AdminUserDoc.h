@@ -91,7 +91,7 @@ namespace TaxiApp {
 			this->rtbSaveTests->Location = System::Drawing::Point(96, 304);
 			this->rtbSaveTests->Name = L"rtbSaveTests";
 			this->rtbSaveTests->Size = System::Drawing::Size(337, 153);
-			this->rtbSaveTests->TabIndex = 0;
+			this->rtbSaveTests->TabIndex = 3;
 			this->rtbSaveTests->Text = L"";
 			// 
 			// btnSaveTests
@@ -99,7 +99,7 @@ namespace TaxiApp {
 			this->btnSaveTests->Location = System::Drawing::Point(293, 254);
 			this->btnSaveTests->Name = L"btnSaveTests";
 			this->btnSaveTests->Size = System::Drawing::Size(75, 23);
-			this->btnSaveTests->TabIndex = 1;
+			this->btnSaveTests->TabIndex = 2;
 			this->btnSaveTests->Text = L"Save Tests";
 			this->btnSaveTests->UseVisualStyleBackColor = true;
 			this->btnSaveTests->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnSaveTests_Click);
@@ -110,15 +110,16 @@ namespace TaxiApp {
 			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
 			this->lbEmailBuff->Name = L"lbEmailBuff";
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
-			this->lbEmailBuff->TabIndex = 2;
+			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// btnSaveVaccines
 			// 
 			this->btnSaveVaccines->Location = System::Drawing::Point(293, 484);
 			this->btnSaveVaccines->Name = L"btnSaveVaccines";
 			this->btnSaveVaccines->Size = System::Drawing::Size(102, 23);
-			this->btnSaveVaccines->TabIndex = 3;
+			this->btnSaveVaccines->TabIndex = 5;
 			this->btnSaveVaccines->Text = L"Save Vaccines";
 			this->btnSaveVaccines->UseVisualStyleBackColor = true;
 			this->btnSaveVaccines->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnSaveVaccines_Click);
@@ -128,7 +129,7 @@ namespace TaxiApp {
 			this->rtbSaveVaccines->Location = System::Drawing::Point(96, 528);
 			this->rtbSaveVaccines->Name = L"rtbSaveVaccines";
 			this->rtbSaveVaccines->Size = System::Drawing::Size(337, 153);
-			this->rtbSaveVaccines->TabIndex = 4;
+			this->rtbSaveVaccines->TabIndex = 6;
 			this->rtbSaveVaccines->Text = L"";
 			// 
 			// lbUser
@@ -140,7 +141,7 @@ namespace TaxiApp {
 			this->lbUser->Location = System::Drawing::Point(110, 160);
 			this->lbUser->Name = L"lbUser";
 			this->lbUser->Size = System::Drawing::Size(176, 24);
-			this->lbUser->TabIndex = 16;
+			this->lbUser->TabIndex = 0;
 			this->lbUser->Text = L"User Name Here";
 			// 
 			// lbUserNotUsed
@@ -152,7 +153,7 @@ namespace TaxiApp {
 			this->lbUserNotUsed->Location = System::Drawing::Point(110, 121);
 			this->lbUserNotUsed->Name = L"lbUserNotUsed";
 			this->lbUserNotUsed->Size = System::Drawing::Size(65, 24);
-			this->lbUserNotUsed->TabIndex = 17;
+			this->lbUserNotUsed->TabIndex = 0;
 			this->lbUserNotUsed->Text = L"User:";
 			// 
 			// btnEditTests
@@ -160,7 +161,7 @@ namespace TaxiApp {
 			this->btnEditTests->Location = System::Drawing::Point(142, 254);
 			this->btnEditTests->Name = L"btnEditTests";
 			this->btnEditTests->Size = System::Drawing::Size(75, 23);
-			this->btnEditTests->TabIndex = 18;
+			this->btnEditTests->TabIndex = 1;
 			this->btnEditTests->Text = L"Edit Tests";
 			this->btnEditTests->UseVisualStyleBackColor = true;
 			this->btnEditTests->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnEditTests_Click);
@@ -170,7 +171,7 @@ namespace TaxiApp {
 			this->btnEditVaccines->Location = System::Drawing::Point(133, 484);
 			this->btnEditVaccines->Name = L"btnEditVaccines";
 			this->btnEditVaccines->Size = System::Drawing::Size(102, 23);
-			this->btnEditVaccines->TabIndex = 19;
+			this->btnEditVaccines->TabIndex = 4;
 			this->btnEditVaccines->Text = L"Edit Vaccines";
 			this->btnEditVaccines->UseVisualStyleBackColor = true;
 			this->btnEditVaccines->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnEditVaccines_Click);

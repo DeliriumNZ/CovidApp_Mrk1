@@ -48,6 +48,8 @@ namespace TaxiApp {
 	private:
 
 	private: System::Windows::Forms::Label^ lbEmailBuff;
+	public: System::Windows::Forms::Label^ label1;
+	private:
 	public:
 	private:
 	protected:
@@ -69,13 +71,15 @@ namespace TaxiApp {
 			this->rtbUserRecords = (gcnew System::Windows::Forms::RichTextBox());
 			this->lbUserNameTop = (gcnew System::Windows::Forms::Label());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// rtbUserRecords
 			// 
-			this->rtbUserRecords->Location = System::Drawing::Point(92, 266);
+			this->rtbUserRecords->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold));
+			this->rtbUserRecords->Location = System::Drawing::Point(90, 283);
 			this->rtbUserRecords->Name = L"rtbUserRecords";
-			this->rtbUserRecords->Size = System::Drawing::Size(343, 406);
+			this->rtbUserRecords->Size = System::Drawing::Size(343, 380);
 			this->rtbUserRecords->TabIndex = 1;
 			this->rtbUserRecords->Text = L"";
 			// 
@@ -98,6 +102,18 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 3;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->label1->Location = System::Drawing::Point(86, 256);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(257, 24);
+			this->label1->TabIndex = 4;
+			this->label1->Text = L"Covid19 Vaccine History";
 			// 
 			// UserVaccine
 			// 
@@ -105,6 +121,7 @@ namespace TaxiApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->lbUserNameTop);
 			this->Controls->Add(this->rtbUserRecords);

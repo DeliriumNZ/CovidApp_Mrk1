@@ -108,7 +108,7 @@ namespace TaxiApp {
 			this->rtbProblem->Location = System::Drawing::Point(128, 338);
 			this->rtbProblem->Name = L"rtbProblem";
 			this->rtbProblem->Size = System::Drawing::Size(268, 268);
-			this->rtbProblem->TabIndex = 4;
+			this->rtbProblem->TabIndex = 2;
 			this->rtbProblem->Text = L"";
 			// 
 			// rtbSummary
@@ -116,7 +116,7 @@ namespace TaxiApp {
 			this->rtbSummary->Location = System::Drawing::Point(128, 266);
 			this->rtbSummary->Name = L"rtbSummary";
 			this->rtbSummary->Size = System::Drawing::Size(268, 30);
-			this->rtbSummary->TabIndex = 5;
+			this->rtbSummary->TabIndex = 1;
 			this->rtbSummary->Text = L"";
 			// 
 			// label1
@@ -127,7 +127,7 @@ namespace TaxiApp {
 			this->label1->Location = System::Drawing::Point(124, 239);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(107, 24);
-			this->label1->TabIndex = 6;
+			this->label1->TabIndex = 0;
 			this->label1->Text = L"Summary";
 			// 
 			// label2
@@ -138,7 +138,7 @@ namespace TaxiApp {
 			this->label2->Location = System::Drawing::Point(124, 311);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(96, 24);
-			this->label2->TabIndex = 7;
+			this->label2->TabIndex = 0;
 			this->label2->Text = L"Problem";
 			// 
 			// lbEmailBuff
@@ -148,8 +148,9 @@ namespace TaxiApp {
 			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
 			this->lbEmailBuff->Name = L"lbEmailBuff";
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
-			this->lbEmailBuff->TabIndex = 8;
+			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// ReportBug
 			// 

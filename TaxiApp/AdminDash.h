@@ -75,8 +75,7 @@ namespace TaxiApp {
 			// 
 			// tbSearch
 			// 
-			this->tbSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->tbSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold));
 			this->tbSearch->Location = System::Drawing::Point(81, 239);
 			this->tbSearch->Multiline = true;
 			this->tbSearch->Name = L"tbSearch";
