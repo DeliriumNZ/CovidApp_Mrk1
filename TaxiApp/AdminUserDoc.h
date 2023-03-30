@@ -55,6 +55,8 @@ namespace TaxiApp {
 
 	private: System::Windows::Forms::Label^ lbUser;
 	private: System::Windows::Forms::Label^ lbUserNotUsed;
+	private: System::Windows::Forms::Button^ btnEditTests;
+	private: System::Windows::Forms::Button^ btnEditVaccines;
 
 	private:
 	protected:
@@ -80,6 +82,8 @@ namespace TaxiApp {
 			this->rtbSaveVaccines = (gcnew System::Windows::Forms::RichTextBox());
 			this->lbUser = (gcnew System::Windows::Forms::Label());
 			this->lbUserNotUsed = (gcnew System::Windows::Forms::Label());
+			this->btnEditTests = (gcnew System::Windows::Forms::Button());
+			this->btnEditVaccines = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// rtbSaveTests
@@ -92,7 +96,7 @@ namespace TaxiApp {
 			// 
 			// btnSaveTests
 			// 
-			this->btnSaveTests->Location = System::Drawing::Point(223, 254);
+			this->btnSaveTests->Location = System::Drawing::Point(293, 254);
 			this->btnSaveTests->Name = L"btnSaveTests";
 			this->btnSaveTests->Size = System::Drawing::Size(75, 23);
 			this->btnSaveTests->TabIndex = 1;
@@ -111,12 +115,13 @@ namespace TaxiApp {
 			// 
 			// btnSaveVaccines
 			// 
-			this->btnSaveVaccines->Location = System::Drawing::Point(210, 481);
+			this->btnSaveVaccines->Location = System::Drawing::Point(293, 484);
 			this->btnSaveVaccines->Name = L"btnSaveVaccines";
 			this->btnSaveVaccines->Size = System::Drawing::Size(102, 23);
 			this->btnSaveVaccines->TabIndex = 3;
 			this->btnSaveVaccines->Text = L"Save Vaccines";
 			this->btnSaveVaccines->UseVisualStyleBackColor = true;
+			this->btnSaveVaccines->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnSaveVaccines_Click);
 			// 
 			// rtbSaveVaccines
 			// 
@@ -150,12 +155,34 @@ namespace TaxiApp {
 			this->lbUserNotUsed->TabIndex = 17;
 			this->lbUserNotUsed->Text = L"User:";
 			// 
+			// btnEditTests
+			// 
+			this->btnEditTests->Location = System::Drawing::Point(142, 254);
+			this->btnEditTests->Name = L"btnEditTests";
+			this->btnEditTests->Size = System::Drawing::Size(75, 23);
+			this->btnEditTests->TabIndex = 18;
+			this->btnEditTests->Text = L"Edit Tests";
+			this->btnEditTests->UseVisualStyleBackColor = true;
+			this->btnEditTests->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnEditTests_Click);
+			// 
+			// btnEditVaccines
+			// 
+			this->btnEditVaccines->Location = System::Drawing::Point(133, 484);
+			this->btnEditVaccines->Name = L"btnEditVaccines";
+			this->btnEditVaccines->Size = System::Drawing::Size(102, 23);
+			this->btnEditVaccines->TabIndex = 19;
+			this->btnEditVaccines->Text = L"Edit Vaccines";
+			this->btnEditVaccines->UseVisualStyleBackColor = true;
+			this->btnEditVaccines->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnEditVaccines_Click);
+			// 
 			// AdminUserDoc
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->btnEditVaccines);
+			this->Controls->Add(this->btnEditTests);
 			this->Controls->Add(this->lbUserNotUsed);
 			this->Controls->Add(this->lbUser);
 			this->Controls->Add(this->rtbSaveVaccines);
@@ -177,7 +204,7 @@ namespace TaxiApp {
 			lbEmailBuff->Text = Text;
 		}
 
-	private: System::Void AdminUserDoc_Load(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void AdminUserDoc_Load(System::Object^ sender, System::EventArgs^ e) {
 		string UserInfoLoad = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
 		string line;
 		string fileName = UserInfoLoad + "_User_Data.txt";
@@ -198,9 +225,11 @@ namespace TaxiApp {
 
 
 	}
+
+
 private: System::Void btnSaveTests_Click(System::Object^ sender, System::EventArgs^ e) {
 	string UserTestSave = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
-	string LineData;
+	string LineData2;
 	string FileNameTests = UserTestSave + "_User_Test_Records.txt";
 	ofstream UserTests(FileNameTests);
 
@@ -210,6 +239,62 @@ private: System::Void btnSaveTests_Click(System::Object^ sender, System::EventAr
 		UserTests << rtbSaveTestsContents;
 		UserTests.close();
 		MessageBox::Show("Saved!");
+	}
+	else
+	{
+		MessageBox::Show("Failed to Open!");
+	}
+}
+private: System::Void btnEditTests_Click(System::Object^ sender, System::EventArgs^ e) {
+	string UserInfoLoad = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	string line;
+	string fileName = UserInfoLoad + "_User_Test_Records.txt"; //example Nathan@email.com_User_Test_Records
+	ifstream myFile(fileName);
+
+	if (myFile.is_open())
+	{
+		std::string fileContents((std::istreambuf_iterator<char>(myFile)), std::istreambuf_iterator<char>());
+		System::String^ textBoxContents = gcnew System::String(fileContents.c_str());
+		rtbSaveTests->Text = textBoxContents;
+		myFile.close();
+	}
+	else
+	{
+		MessageBox::Show("Failed to Open!");
+	}
+}
+
+
+
+private: System::Void btnSaveVaccines_Click(System::Object^ sender, System::EventArgs^ e) {
+	string UserVaccineSave = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	string FileNameVacs = UserVaccineSave + "_User_Vaccine_Records.txt";
+	ofstream UserVaccines(FileNameVacs);
+
+	if (UserVaccines.is_open()) //is Nathan@email.com_User_Vaccine_Records.txt open?
+	{
+		std::string rtbSaveTestsContents = msclr::interop::marshal_as<std::string>(rtbSaveVaccines->Text);
+		UserVaccines << rtbSaveTestsContents;
+		UserVaccines.close();
+		MessageBox::Show("Saved!");
+	}
+	else
+	{
+		MessageBox::Show("Failed to Open!");
+	}
+}
+private: System::Void btnEditVaccines_Click(System::Object^ sender, System::EventArgs^ e) {
+	string UserInfoLoad = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	string line;
+	string fileName = UserInfoLoad + "_User_Vaccine_Records.txt";
+	ifstream myFile(fileName);
+
+	if (myFile.is_open())
+	{
+		std::string fileContents((std::istreambuf_iterator<char>(myFile)), std::istreambuf_iterator<char>());
+		System::String^ textBoxContents = gcnew System::String(fileContents.c_str());
+		rtbSaveVaccines->Text = textBoxContents;
+		myFile.close();
 	}
 	else
 	{

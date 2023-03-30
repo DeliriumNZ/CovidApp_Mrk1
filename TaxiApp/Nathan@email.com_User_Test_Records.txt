@@ -1,9 +1,1 @@
-=== COVID 19 TEST 1 ===
-Date: 26/03/2023
-Results: Negative
-======================
-
-=== COVID 19 TEST 2 ===
-Date: 30/03/2023
-Results: Negative
-======================
+Testing Save
