@@ -150,7 +150,6 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
-			this->lbEmailBuff->Visible = false;
 			// 
 			// ReportBug
 			// 
@@ -183,21 +182,41 @@ private: System::Void btnSend_Click(System::Object^ sender, System::EventArgs^ e
 
 	string BugReportSum = msclr::interop::marshal_as<std::string>(rtbSummary->Text);
 	string line;
-	string fileName = BugReportSum + "_BugReport.txt";
+	string fileName = "BUG " + BugReportSum + "_BugReport.txt";
 	ofstream myFile(fileName);
 
 	if (myFile.is_open())
 	{
+		//Getting System Time and Date
+		time_t now = time(0);
+		struct tm timeinfo;
+		localtime_s(&timeinfo, &now);
+		char buffer[80];
+		strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
+		string DATE = buffer;
+
+
 		std::string fileSum = msclr::interop::marshal_as<std::string>(rtbSummary->Text);
 		std::string fileProb = msclr::interop::marshal_as<std::string>(rtbProblem->Text);
 		std::string fileUser = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
 
-		myFile << fileSum;
-		myFile << fileProb;
-		myFile << fileUser;
+		myFile << fileSum + "- ";
+		myFile << fileProb + "- ";
+		myFile << fileUser + " @ ";
+		myFile << DATE;
 		myFile.close();
 
 		MessageBox::Show("Saved!");
+
+
+
+		//Open File / Save message into file / Close File
+		string emailPlace = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+		ofstream ReportBug("Bug_Report_Log.txt");
+		string msgOne = ("Bug Report by ");
+		string msgTwo = (" have been recorded @ ");
+		ReportBug << msgOne + emailPlace + msgTwo + DATE;
+		ReportBug.close();
 	}
 	else
 	{

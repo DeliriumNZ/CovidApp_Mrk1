@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <ctime>
 #include <msclr/marshal_cppstd.h>
 
 namespace TaxiApp {
@@ -227,7 +228,7 @@ private: System::Void AdminUserDoc_Load(System::Object^ sender, System::EventArg
 
 	}
 
-
+//Button for saving and editing Test Records
 private: System::Void btnSaveTests_Click(System::Object^ sender, System::EventArgs^ e) {
 	string UserTestSave = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
 	string LineData2;
@@ -240,6 +241,23 @@ private: System::Void btnSaveTests_Click(System::Object^ sender, System::EventAr
 		UserTests << rtbSaveTestsContents;
 		UserTests.close();
 		MessageBox::Show("Saved!");
+
+
+		//Getting System Time and Date
+		time_t now = time(0);
+		struct tm timeinfo;
+		localtime_s(&timeinfo, &now);
+		char buffer[80];
+		strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
+		string DATE = buffer;
+
+		//Open File / Save message into file / Close File
+		ofstream TestResults("Test_Results_Log.txt");
+		string msgOne = ("Test Results for ");		
+		string msgTwo = (" have been saved @ ");
+		TestResults << msgOne + UserTestSave + msgTwo + DATE;
+		TestResults.close();
+
 	}
 	else
 	{
@@ -267,6 +285,7 @@ private: System::Void btnEditTests_Click(System::Object^ sender, System::EventAr
 
 
 
+//Button for saving and editing Vaccine Records
 private: System::Void btnSaveVaccines_Click(System::Object^ sender, System::EventArgs^ e) {
 	string UserVaccineSave = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
 	string FileNameVacs = UserVaccineSave + "_User_Vaccine_Records.txt";
@@ -278,6 +297,21 @@ private: System::Void btnSaveVaccines_Click(System::Object^ sender, System::Even
 		UserVaccines << rtbSaveTestsContents;
 		UserVaccines.close();
 		MessageBox::Show("Saved!");
+
+		//Getting System Time and Date
+		time_t now = time(0);
+		struct tm timeinfo;
+		localtime_s(&timeinfo, &now);
+		char buffer[80];
+		strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
+		string DATE = buffer;
+
+		//Open File / Save message into file / Close File
+		ofstream VaccineCert("Vaccine_Cert_Log.txt");
+		string msgOne = ("Vaccine Certificates for ");
+		string msgTwo = (" have been saved @ ");
+		VaccineCert << msgOne + UserVaccineSave + msgTwo + DATE;
+		VaccineCert.close();
 	}
 	else
 	{
