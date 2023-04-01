@@ -1,0 +1,11 @@
+Vaccine Status: Completed!
+
+=== Vaccine Dose 1===
+Date: 18/05/2022
+Type: Pfizer
+===================
+
+=== Vaccine Dose 2===
+Date: 20/11/2022
+Type: Pfizer
+===================

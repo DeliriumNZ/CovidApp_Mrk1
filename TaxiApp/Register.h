@@ -125,6 +125,7 @@ namespace TaxiApp {
 			this->txtBoxUserName->TabIndex = 1;
 			this->txtBoxUserName->Text = L"Full Name";
 			this->txtBoxUserName->TextChanged += gcnew System::EventHandler(this, &Register::txtBoxUserName_TextChanged);
+			this->txtBoxUserName->Leave += gcnew System::EventHandler(this, &Register::txtBoxUserName_Leave);
 			// 
 			// txtBoxEmail
 			// 
@@ -139,6 +140,7 @@ namespace TaxiApp {
 			this->txtBoxEmail->TabIndex = 2;
 			this->txtBoxEmail->Text = L"Email";
 			this->txtBoxEmail->Enter += gcnew System::EventHandler(this, &Register::txtBoxEmail_Enter);
+			this->txtBoxEmail->Leave += gcnew System::EventHandler(this, &Register::txtBoxEmail_Leave);
 			// 
 			// txtBoxCellNum
 			// 
@@ -153,6 +155,7 @@ namespace TaxiApp {
 			this->txtBoxCellNum->TabIndex = 8;
 			this->txtBoxCellNum->Text = L"CellPhone Number";
 			this->txtBoxCellNum->Enter += gcnew System::EventHandler(this, &Register::txtBoxCellNum_Enter);
+			this->txtBoxCellNum->Leave += gcnew System::EventHandler(this, &Register::txtBoxCellNum_Leave);
 			// 
 			// txtBoxDOB
 			// 
@@ -167,6 +170,7 @@ namespace TaxiApp {
 			this->txtBoxDOB->TabIndex = 4;
 			this->txtBoxDOB->Text = L"D.o.B";
 			this->txtBoxDOB->Enter += gcnew System::EventHandler(this, &Register::txtBoxDOB_Enter);
+			this->txtBoxDOB->Leave += gcnew System::EventHandler(this, &Register::txtBoxDOB_Leave);
 			// 
 			// txtBoxAddress
 			// 
@@ -181,6 +185,7 @@ namespace TaxiApp {
 			this->txtBoxAddress->TabIndex = 5;
 			this->txtBoxAddress->Text = L"Address";
 			this->txtBoxAddress->Enter += gcnew System::EventHandler(this, &Register::txtBoxAddress_Enter);
+			this->txtBoxAddress->Leave += gcnew System::EventHandler(this, &Register::txtBoxAddress_Leave);
 			// 
 			// txtBoxGender
 			// 
@@ -195,6 +200,7 @@ namespace TaxiApp {
 			this->txtBoxGender->TabIndex = 6;
 			this->txtBoxGender->Text = L"Gender";
 			this->txtBoxGender->Enter += gcnew System::EventHandler(this, &Register::textBoxGender_Enter);
+			this->txtBoxGender->Leave += gcnew System::EventHandler(this, &Register::txtBoxGender_Leave);
 			// 
 			// txtBoxEthnicty
 			// 
@@ -209,6 +215,7 @@ namespace TaxiApp {
 			this->txtBoxEthnicty->TabIndex = 7;
 			this->txtBoxEthnicty->Text = L"Ethnicty";
 			this->txtBoxEthnicty->Enter += gcnew System::EventHandler(this, &Register::txtBoxEthnicty_Enter);
+			this->txtBoxEthnicty->Leave += gcnew System::EventHandler(this, &Register::txtBoxEthnicty_Leave);
 			// 
 			// txtBoxPass
 			// 
@@ -223,6 +230,7 @@ namespace TaxiApp {
 			this->txtBoxPass->TabIndex = 3;
 			this->txtBoxPass->Text = L"Password";
 			this->txtBoxPass->Enter += gcnew System::EventHandler(this, &Register::txtBoxPass_Enter);
+			this->txtBoxPass->Leave += gcnew System::EventHandler(this, &Register::txtBoxPass_Leave);
 			// 
 			// btnRegister
 			// 
@@ -262,9 +270,9 @@ namespace TaxiApp {
 		}
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+		//This does nothing at all but when I remove it, the code doesn't run... DO NOT REMOVE
 	}
-	private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
@@ -272,66 +280,119 @@ private: System::Void txtBoxUserName_TextChanged(System::Object^ sender, System:
 	if (txtBoxUserName->Text == "Full Name")
 	{
 		txtBoxUserName->Text = "";
-
-		txtBoxUserName->ForeColor = ForeColor.Black;
+		txtBoxUserName->ForeColor = ForeColor.Gray;
 	}
-
 }
+private: System::Void txtBoxUserName_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxUserName->Text == "")
+	{
+		txtBoxUserName->Text = "Full Name ";
+		txtBoxUserName->ForeColor = ForeColor.Gray;
+	}
+}
+
 private: System::Void txtBoxEmail_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxEmail->Text == "Email")
 	{
 		txtBoxEmail->Text = "";
-
-		txtBoxEmail->ForeColor = ForeColor.Black;
+		txtBoxEmail->ForeColor = ForeColor.Gray;
 	}
 }
+private: System::Void txtBoxEmail_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxEmail->Text == "")
+	{
+		txtBoxEmail->Text = "Email ";
+		txtBoxEmail->ForeColor = ForeColor.Gray;
+	}
+}
+
 private: System::Void txtBoxPass_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxPass->Text == "Password")
 	{
 		txtBoxPass->Text = "";
-
-		txtBoxPass->ForeColor = ForeColor.Black;
+		txtBoxPass->ForeColor = ForeColor.Gray;
+	}	
+}
+private: System::Void txtBoxPass_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxPass->Text == "")
+	{
+		txtBoxPass->Text = "Password ";
+		txtBoxPass->ForeColor = ForeColor.Gray;
 	}
 }
+
 private: System::Void txtBoxDOB_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxDOB->Text == "D.o.B")
 	{
 		txtBoxDOB->Text = "";
-
-		txtBoxDOB->ForeColor = ForeColor.Black;
+		txtBoxDOB->ForeColor = ForeColor.Gray;
 	}
 }
+private: System::Void txtBoxDOB_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxDOB->Text == "")
+	{
+		txtBoxDOB->Text = "D.o.B ";
+		txtBoxDOB->ForeColor = ForeColor.Gray;
+	}
+}
+
 private: System::Void txtBoxAddress_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxAddress->Text == "Address")
 	{
 		txtBoxAddress->Text = "";
-
-		txtBoxAddress->ForeColor = ForeColor.Black;
+		txtBoxAddress->ForeColor = ForeColor.Gray;
 	}
 }
+private: System::Void txtBoxAddress_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxAddress->Text == "")
+	{
+		txtBoxAddress->Text = "Address ";
+		txtBoxAddress->ForeColor = ForeColor.Gray;
+	}
+}
+
 private: System::Void textBoxGender_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxGender->Text == "Gender")
 	{
 		txtBoxGender->Text = "";
-
-		txtBoxGender->ForeColor = ForeColor.Black;
+		txtBoxGender->ForeColor = ForeColor.Gray;
 	}
 }
+private: System::Void txtBoxGender_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxGender->Text == "")
+	{
+		txtBoxGender->Text = "Gender ";
+		txtBoxGender->ForeColor = ForeColor.Gray;
+	}
+}
+
 private: System::Void txtBoxEthnicty_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxEthnicty->Text == "Ethnicty")
 	{
 		txtBoxEthnicty->Text = "";
-
-		txtBoxEthnicty->ForeColor = ForeColor.Black;
+		txtBoxEthnicty->ForeColor = ForeColor.Gray;
 	}
-
 }
+private: System::Void txtBoxEthnicty_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxEthnicty->Text == "")
+	{
+		txtBoxEthnicty->Text = "Ethnicty ";
+		txtBoxEthnicty->ForeColor = ForeColor.Gray;
+	}
+}
+
 private: System::Void txtBoxCellNum_Enter(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxCellNum->Text == "CellPhone Number")
 	{
 		txtBoxCellNum->Text = "";
-
-		txtBoxCellNum->ForeColor = ForeColor.Black;
+		txtBoxCellNum->ForeColor = ForeColor.Gray;
+	}
+}
+private: System::Void txtBoxCellNum_Leave(System::Object^ sender, System::EventArgs^ e) {
+	if (txtBoxCellNum->Text == "")
+	{
+		txtBoxCellNum->Text = "CellPhone Number ";
+		txtBoxCellNum->ForeColor = ForeColor.Gray;
 	}
 }
 
@@ -350,7 +411,7 @@ private: System::Void btnRegister_Click(System::Object^ sender, System::EventArg
 
 	StreamWriter^ writer = gcnew StreamWriter(filename);
 	//NOTE
-	//The order of text saved to the text file IS NOT the same order as it is shown on the register page.
+	//The order of text saved to the text file IS NOT the same order as it is shown on the register page. DO NOT CHANGE
 	writer->WriteLine(email);
 	writer->WriteLine(password); 
 	writer->WriteLine(fullname);	
@@ -362,14 +423,14 @@ private: System::Void btnRegister_Click(System::Object^ sender, System::EventArg
 
 	writer->Close();
 
-	txtBoxEmail->Text = "";
-	txtBoxPass->Text = "";
-	txtBoxUserName->Text = "";
-	txtBoxDOB->Text = "";
-	txtBoxAddress->Text = "";
-	txtBoxGender->Text = "";
-	txtBoxEthnicty->Text = "";
-	txtBoxCellNum->Text = "";
+	txtBoxEmail->Text = "Email ";
+	txtBoxPass->Text = "Password ";
+	txtBoxUserName->Text = "Full Name ";
+	txtBoxDOB->Text = "D.o.B ";
+	txtBoxAddress->Text = "Address ";
+	txtBoxGender->Text = "Gender ";
+	txtBoxEthnicty->Text = "Ethnicty ";
+	txtBoxCellNum->Text = "CellPhone Number ";
 
 }
 };

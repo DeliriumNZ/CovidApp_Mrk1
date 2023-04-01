@@ -1,5 +1,7 @@
 #pragma once
 #include "AdminEditUserDets.h"
+#include "AdminUserDoc.h"
+#include "AdminQR.h"
 
 #include <fstream>
 #include <iostream>
@@ -91,6 +93,7 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// btnDetails
 			// 
@@ -101,7 +104,7 @@ namespace TaxiApp {
 			this->btnDetails->Location = System::Drawing::Point(77, 405);
 			this->btnDetails->Name = L"btnDetails";
 			this->btnDetails->Size = System::Drawing::Size(368, 64);
-			this->btnDetails->TabIndex = 0;
+			this->btnDetails->TabIndex = 1;
 			this->btnDetails->Text = L"Details";
 			this->btnDetails->UseVisualStyleBackColor = true;
 			this->btnDetails->Click += gcnew System::EventHandler(this, &AdminMenu::btnDetails_Click);
@@ -115,9 +118,10 @@ namespace TaxiApp {
 			this->btnTestRecords->Location = System::Drawing::Point(75, 502);
 			this->btnTestRecords->Name = L"btnTestRecords";
 			this->btnTestRecords->Size = System::Drawing::Size(366, 64);
-			this->btnTestRecords->TabIndex = 0;
+			this->btnTestRecords->TabIndex = 2;
 			this->btnTestRecords->Text = L"  Test Records";
 			this->btnTestRecords->UseVisualStyleBackColor = false;
+			this->btnTestRecords->Click += gcnew System::EventHandler(this, &AdminMenu::btnTestRecords_Click);
 			// 
 			// btnQRCode
 			// 
@@ -128,9 +132,10 @@ namespace TaxiApp {
 			this->btnQRCode->Location = System::Drawing::Point(76, 594);
 			this->btnQRCode->Name = L"btnQRCode";
 			this->btnQRCode->Size = System::Drawing::Size(369, 64);
-			this->btnQRCode->TabIndex = 0;
+			this->btnQRCode->TabIndex = 3;
 			this->btnQRCode->Text = L"QR Code";
 			this->btnQRCode->UseVisualStyleBackColor = false;
+			this->btnQRCode->Click += gcnew System::EventHandler(this, &AdminMenu::btnQRCode_Click);
 			// 
 			// label1
 			// 
@@ -184,7 +189,7 @@ public://This recives the email text from AdminDash and stores it in a hidden la
 	}
 
 
-	//Sending email over to AdminEditUserDets form to assist in opening user details file.
+	//Sending email over to other admin forms to assist in opening user details file.
 public:
 	property String^ lbEmailBuffTextv2
 	{
@@ -214,8 +219,18 @@ public:
 	private: System::Void btnDetails_Click(System::Object^ sender, System::EventArgs^ e) {
 		AdminEditUserDets^ adminEditForm = gcnew AdminEditUserDets();
 		adminEditForm->SetEmailText(lbEmailBuff->Text);
-		adminEditForm->Show();
+		adminEditForm->ShowDialog();
 	}
 
+private: System::Void btnTestRecords_Click(System::Object^ sender, System::EventArgs^ e) {
+	AdminUserDoc^ adminUserDocForm = gcnew AdminUserDoc();
+	adminUserDocForm->SetEmailText(lbEmailBuff->Text);
+	adminUserDocForm->ShowDialog();
+}
+private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^ e) {
+	AdminQR^ adminQRForm = gcnew AdminQR();
+	//adminQRForm->SetEmailText(lbEmailBuff->Text); Uncomment once page has been made
+	adminQRForm->ShowDialog();
+}
 };
 }

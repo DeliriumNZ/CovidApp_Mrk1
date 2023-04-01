@@ -113,13 +113,13 @@ namespace TaxiApp {
 			// 
 			this->txtBoxUserPass->BackColor = System::Drawing::Color::Gainsboro;
 			this->txtBoxUserPass->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->txtBoxUserPass->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txtBoxUserPass->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->txtBoxUserPass->ForeColor = System::Drawing::SystemColors::ButtonShadow;
 			this->txtBoxUserPass->Location = System::Drawing::Point(127, 399);
 			this->txtBoxUserPass->Name = L"txtBoxUserPass";
 			this->txtBoxUserPass->PasswordChar = '*';
-			this->txtBoxUserPass->Size = System::Drawing::Size(263, 38);
+			this->txtBoxUserPass->Size = System::Drawing::Size(263, 28);
 			this->txtBoxUserPass->TabIndex = 3;
 			this->txtBoxUserPass->Text = L"Password";
 			this->txtBoxUserPass->Enter += gcnew System::EventHandler(this, &Login::txtBoxUserPass_TextChanged);
@@ -128,12 +128,12 @@ namespace TaxiApp {
 			// 
 			this->txtBoxUserName->BackColor = System::Drawing::Color::Gainsboro;
 			this->txtBoxUserName->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->txtBoxUserName->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->txtBoxUserName->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->txtBoxUserName->ForeColor = System::Drawing::SystemColors::ButtonShadow;
 			this->txtBoxUserName->Location = System::Drawing::Point(127, 302);
 			this->txtBoxUserName->Name = L"txtBoxUserName";
-			this->txtBoxUserName->Size = System::Drawing::Size(263, 38);
+			this->txtBoxUserName->Size = System::Drawing::Size(263, 32);
 			this->txtBoxUserName->TabIndex = 2;
 			this->txtBoxUserName->Text = L"Email@exm.com";
 			this->txtBoxUserName->Enter += gcnew System::EventHandler(this, &Login::txtBoxUserName_TextChanged);
@@ -203,9 +203,11 @@ namespace TaxiApp {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(127, 283);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(32, 13);
+			this->label4->Size = System::Drawing::Size(37, 13);
 			this->label4->TabIndex = 0;
 			this->label4->Text = L"Email";
 			// 
@@ -213,9 +215,11 @@ namespace TaxiApp {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BackColor = System::Drawing::Color::Transparent;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(127, 383);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(53, 13);
+			this->label5->Size = System::Drawing::Size(61, 13);
 			this->label5->TabIndex = 12;
 			this->label5->Text = L"Password";
 			// 
@@ -280,7 +284,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	if (email == "Admin" && password == "AdminPass")
 	{
 		AdminDash^ adminDashForm = gcnew AdminDash();
-		adminDashForm->Show();
+		adminDashForm->ShowDialog();
 	}
 	else if (checkLogin(email, password))
 	{
@@ -297,7 +301,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
 
 		DashBoard^ dashboardForm = gcnew DashBoard(txtBoxUserName->Text);
-		dashboardForm->Show();
+		dashboardForm->ShowDialog();
 	}
 
 	else
@@ -319,17 +323,21 @@ private: System::Void lbSignUp_Click(System::Object^ sender, System::EventArgs^ 
 	
 	Register^ regForm = gcnew Register();
 	//Open Register window
-	regForm->Show();
+	regForm->ShowDialog();
 
 }
 private: System::Void txtBoxUserName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	txtBoxUserName->ForeColor = ForeColor.Black;
+	if (txtBoxUserName->Text == "Email@exm.com")
+	{
+		txtBoxUserName->Text = "";
+		txtBoxUserName->ForeColor = ForeColor.Black;
+	}
+	
 }
 private: System::Void txtBoxUserPass_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	if (txtBoxUserPass->Text == "Password")
 	{
 		txtBoxUserPass->Text = "";
-
 		txtBoxUserPass->ForeColor = ForeColor.Black;
 	}
 }

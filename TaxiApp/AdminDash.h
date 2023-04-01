@@ -50,6 +50,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Button^ btnExit;
 
 
 	private:
@@ -71,12 +72,12 @@ namespace TaxiApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->btnExit = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// tbSearch
 			// 
-			this->tbSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->tbSearch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold));
 			this->tbSearch->Location = System::Drawing::Point(81, 239);
 			this->tbSearch->Multiline = true;
 			this->tbSearch->Name = L"tbSearch";
@@ -131,12 +132,27 @@ namespace TaxiApp {
 			this->label3->TabIndex = 19;
 			this->label3->Text = L"more options.";
 			// 
+			// btnExit
+			// 
+			this->btnExit->BackColor = System::Drawing::Color::Firebrick;
+			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnExit->Font = (gcnew System::Drawing::Font(L"Gadugi", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnExit->Location = System::Drawing::Point(456, 12);
+			this->btnExit->Name = L"btnExit";
+			this->btnExit->Size = System::Drawing::Size(51, 27);
+			this->btnExit->TabIndex = 20;
+			this->btnExit->Text = L"EXIT";
+			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &AdminDash::btnExit_Click);
+			// 
 			// AdminDash
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -178,5 +194,8 @@ public:
 			MessageBox::Show("User not found!");
 		}
 	}
-	};
+	private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+		Application::Exit();
+	}
+};
 }
