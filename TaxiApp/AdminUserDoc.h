@@ -213,6 +213,7 @@ namespace TaxiApp {
 			this->btnPartial->TabIndex = 8;
 			this->btnPartial->Text = L"Partial";
 			this->btnPartial->UseVisualStyleBackColor = true;
+			this->btnPartial->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnPartial_Click);
 			// 
 			// btnUnvaccinat
 			// 
@@ -224,6 +225,7 @@ namespace TaxiApp {
 			this->btnUnvaccinat->TabIndex = 9;
 			this->btnUnvaccinat->Text = L"Unvaccinated";
 			this->btnUnvaccinat->UseVisualStyleBackColor = true;
+			this->btnUnvaccinat->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnUnvaccinat_Click);
 			// 
 			// AdminUserDoc
 			// 
@@ -361,7 +363,7 @@ private: System::Void btnSaveVaccines_Click(System::Object^ sender, System::Even
 		ofstream VaccineCert("Vaccine_Cert_Log.txt");
 		string msgOne = ("Vaccine Certificates for ");
 		string msgTwo = (" have been saved @ ");
-		VaccineCert << msgOne + UserVaccineSave + msgTwo + DATE;
+		VaccineCert << msgOne + UserVaccineSave + msgTwo + DATE << endl << endl;
 		VaccineCert.close();
 	}
 	else
@@ -387,6 +389,8 @@ private: System::Void btnEditVaccines_Click(System::Object^ sender, System::Even
 		MessageBox::Show("Failed to Open!");
 	}
 }
+
+
 private: System::Void btnCompleted_Click(System::Object^ sender, System::EventArgs^ e) {
 	//Open File / Add a line 1st line? / Change Text / Close
 	//Read 1st line and Edit First Line Only!
@@ -415,6 +419,56 @@ private: System::Void btnCompleted_Click(System::Object^ sender, System::EventAr
 		MessageBox::Show("Edit has been made");
 	}
 
+}
+
+private: System::Void btnPartial_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (rtbSaveVaccines->Text == "")
+	{
+		//If text if blank, do not update. This stops any loss of data
+		MessageBox::Show("Cannot currently update! User information cannot be blank, click edit first.");
+	}
+	else
+	{
+		string UpdateVacStatus = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+		string FileNameVacs = UpdateVacStatus + "_User_Vaccine_Records.txt";
+		ifstream VacStatus(FileNameVacs);
+		string line;
+		std::getline(VacStatus, line);
+
+		line = "Vaccine Status: Partial!";
+		VacStatus.close();
+		ofstream outFile(FileNameVacs);
+
+		string rtbTextV = msclr::interop::marshal_as<std::string>(rtbSaveVaccines->Text);
+		outFile << line << endl << endl;
+		outFile << rtbTextV;
+		outFile.close();
+
+		MessageBox::Show("Edit has been made");
+	}
+}
+
+private: System::Void btnUnvaccinat_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Make text blank, then update with Unvax line...
+
+		string UpdateVacStatus = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+		string rtbTextV = msclr::interop::marshal_as<std::string>(rtbSaveVaccines->Text);
+
+		string FileNameVacs = UpdateVacStatus + "_User_Vaccine_Records.txt";
+		ifstream VacStatus(FileNameVacs);
+		string line;
+		std::getline(VacStatus, line);
+
+		line = "Vaccine Status: Unvaccinated!";
+		VacStatus.close();
+		ofstream outFile(FileNameVacs);
+
+		rtbTextV = "";
+		outFile << rtbTextV;
+		outFile << line << endl << endl;		
+		outFile.close();
+
+		MessageBox::Show("Edit has been made");
 }
 };
 }
