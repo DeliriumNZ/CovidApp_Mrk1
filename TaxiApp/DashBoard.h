@@ -68,6 +68,7 @@ namespace TaxiApp {
 	public: System::Windows::Forms::Label^ label1;
 
 	private: System::Windows::Forms::Label^ lbEmailBuff;
+	private: System::Windows::Forms::Button^ btnExit;
 
 
 	public:
@@ -105,6 +106,7 @@ namespace TaxiApp {
 			this->btnReportBug = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
+			this->btnExit = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -193,12 +195,27 @@ namespace TaxiApp {
 			this->lbEmailBuff->Text = L"Email Buff";
 			this->lbEmailBuff->Visible = false;
 			// 
+			// btnExit
+			// 
+			this->btnExit->BackColor = System::Drawing::Color::Firebrick;
+			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnExit->Font = (gcnew System::Drawing::Font(L"Gadugi", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnExit->Location = System::Drawing::Point(456, 12);
+			this->btnExit->Name = L"btnExit";
+			this->btnExit->Size = System::Drawing::Size(51, 27);
+			this->btnExit->TabIndex = 21;
+			this->btnExit->Text = L"EXIT";
+			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &DashBoard::btnExit_Click);
+			// 
 			// DashBoard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btnReportBug);
@@ -281,5 +298,8 @@ private: System::Void DashBoard_Shown(System::Object^ sender, System::EventArgs^
 	Username = label1->Text;	//Cant remmeber what this does lol too scared to remove
 }
 
+private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+}
 };
 }

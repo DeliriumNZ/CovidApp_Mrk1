@@ -295,7 +295,7 @@ private: System::Void txtBoxEmail_Enter(System::Object^ sender, System::EventArg
 	if (txtBoxEmail->Text == "Email")
 	{
 		txtBoxEmail->Text = "";
-		txtBoxEmail->ForeColor = ForeColor.Black;
+		txtBoxEmail->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxEmail_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -310,7 +310,7 @@ private: System::Void txtBoxPass_Enter(System::Object^ sender, System::EventArgs
 	if (txtBoxPass->Text == "Password")
 	{
 		txtBoxPass->Text = "";
-		txtBoxPass->ForeColor = ForeColor.Black;
+		txtBoxPass->ForeColor = ForeColor.Gray;
 	}	
 }
 private: System::Void txtBoxPass_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -325,7 +325,7 @@ private: System::Void txtBoxDOB_Enter(System::Object^ sender, System::EventArgs^
 	if (txtBoxDOB->Text == "D.o.B")
 	{
 		txtBoxDOB->Text = "";
-		txtBoxDOB->ForeColor = ForeColor.Black;
+		txtBoxDOB->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxDOB_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -340,7 +340,7 @@ private: System::Void txtBoxAddress_Enter(System::Object^ sender, System::EventA
 	if (txtBoxAddress->Text == "Address")
 	{
 		txtBoxAddress->Text = "";
-		txtBoxAddress->ForeColor = ForeColor.Black;
+		txtBoxAddress->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxAddress_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -355,7 +355,7 @@ private: System::Void textBoxGender_Enter(System::Object^ sender, System::EventA
 	if (txtBoxGender->Text == "Gender")
 	{
 		txtBoxGender->Text = "";
-		txtBoxGender->ForeColor = ForeColor.Black;
+		txtBoxGender->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxGender_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -370,7 +370,7 @@ private: System::Void txtBoxEthnicty_Enter(System::Object^ sender, System::Event
 	if (txtBoxEthnicty->Text == "Ethnicty")
 	{
 		txtBoxEthnicty->Text = "";
-		txtBoxEthnicty->ForeColor = ForeColor.Black;
+		txtBoxEthnicty->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxEthnicty_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -385,7 +385,7 @@ private: System::Void txtBoxCellNum_Enter(System::Object^ sender, System::EventA
 	if (txtBoxCellNum->Text == "CellPhone Number")
 	{
 		txtBoxCellNum->Text = "";
-		txtBoxCellNum->ForeColor = ForeColor.Black;
+		txtBoxCellNum->ForeColor = ForeColor.Gray;
 	}
 }
 private: System::Void txtBoxCellNum_Leave(System::Object^ sender, System::EventArgs^ e) {
