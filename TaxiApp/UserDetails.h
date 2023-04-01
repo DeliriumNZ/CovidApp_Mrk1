@@ -1,4 +1,8 @@
 #pragma once
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <msclr/marshal_cppstd.h>
 
 namespace TaxiApp {
 
@@ -8,6 +12,8 @@ namespace TaxiApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for UserDetails
@@ -21,6 +27,12 @@ namespace TaxiApp {
 			//
 			//TODO: Add the constructor code here
 			//
+		}
+		UserDetails(String^ Email)
+		{
+			InitializeComponent();
+			lbEmailBuff->Text = Email;
+
 		}
 
 	protected:
@@ -44,18 +56,7 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ lbHealthID;
 	private: System::Windows::Forms::Label^ lbGender;
 	private: System::Windows::Forms::Label^ lbEthnicty;
-
-
-
-
-
-
-
-
-
-
-
-
+	private: System::Windows::Forms::Label^ lbEmailBuff;
 
 	protected:
 
@@ -81,6 +82,7 @@ namespace TaxiApp {
 			this->lbHealthID = (gcnew System::Windows::Forms::Label());
 			this->lbGender = (gcnew System::Windows::Forms::Label());
 			this->lbEthnicty = (gcnew System::Windows::Forms::Label());
+			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// lbUserNameTop
@@ -117,7 +119,7 @@ namespace TaxiApp {
 			this->lbName->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbName->ForeColor = System::Drawing::Color::White;
-			this->lbName->Location = System::Drawing::Point(215, 266);
+			this->lbName->Location = System::Drawing::Point(131, 267);
 			this->lbName->Name = L"lbName";
 			this->lbName->Size = System::Drawing::Size(91, 32);
 			this->lbName->TabIndex = 20;
@@ -132,7 +134,7 @@ namespace TaxiApp {
 			this->lbAddress->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbAddress->ForeColor = System::Drawing::Color::White;
-			this->lbAddress->Location = System::Drawing::Point(206, 338);
+			this->lbAddress->Location = System::Drawing::Point(131, 332);
 			this->lbAddress->Name = L"lbAddress";
 			this->lbAddress->Size = System::Drawing::Size(125, 32);
 			this->lbAddress->TabIndex = 21;
@@ -147,7 +149,7 @@ namespace TaxiApp {
 			this->lbPhone->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbPhone->ForeColor = System::Drawing::Color::White;
-			this->lbPhone->Location = System::Drawing::Point(219, 411);
+			this->lbPhone->Location = System::Drawing::Point(131, 414);
 			this->lbPhone->Name = L"lbPhone";
 			this->lbPhone->Size = System::Drawing::Size(96, 32);
 			this->lbPhone->TabIndex = 22;
@@ -162,7 +164,7 @@ namespace TaxiApp {
 			this->lbHealthID->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbHealthID->ForeColor = System::Drawing::Color::White;
-			this->lbHealthID->Location = System::Drawing::Point(203, 480);
+			this->lbHealthID->Location = System::Drawing::Point(131, 484);
 			this->lbHealthID->Name = L"lbHealthID";
 			this->lbHealthID->Size = System::Drawing::Size(128, 32);
 			this->lbHealthID->TabIndex = 23;
@@ -177,7 +179,7 @@ namespace TaxiApp {
 			this->lbGender->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbGender->ForeColor = System::Drawing::Color::White;
-			this->lbGender->Location = System::Drawing::Point(213, 550);
+			this->lbGender->Location = System::Drawing::Point(131, 554);
 			this->lbGender->Name = L"lbGender";
 			this->lbGender->Size = System::Drawing::Size(112, 32);
 			this->lbGender->TabIndex = 24;
@@ -192,11 +194,20 @@ namespace TaxiApp {
 			this->lbEthnicty->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lbEthnicty->ForeColor = System::Drawing::Color::White;
-			this->lbEthnicty->Location = System::Drawing::Point(205, 621);
+			this->lbEthnicty->Location = System::Drawing::Point(131, 623);
 			this->lbEthnicty->Name = L"lbEthnicty";
 			this->lbEthnicty->Size = System::Drawing::Size(122, 32);
 			this->lbEthnicty->TabIndex = 25;
 			this->lbEthnicty->Text = L"Ethnicty";
+			// 
+			// lbEmailBuff
+			// 
+			this->lbEmailBuff->AutoSize = true;
+			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
+			this->lbEmailBuff->Name = L"lbEmailBuff";
+			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
+			this->lbEmailBuff->TabIndex = 0;
+			this->lbEmailBuff->Text = L"Email Buff";
 			// 
 			// UserDetails
 			// 
@@ -204,6 +215,7 @@ namespace TaxiApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->lbEthnicty);
 			this->Controls->Add(this->lbGender);
 			this->Controls->Add(this->lbHealthID);
@@ -214,11 +226,129 @@ namespace TaxiApp {
 			this->Controls->Add(this->lbUserNameTop);
 			this->Name = L"UserDetails";
 			this->Text = L"UserDetails";
+			this->Shown += gcnew System::EventHandler(this, &UserDetails::UserDetails_Shown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+public:
+	void SetEmailLabel(String^ LabelText)
+	{
+		lbEmailBuff->Text = LabelText;
+	}
+	public:
+		property String^ LabelText {
+			String^ get() {
+				return lbEmailBuff->Text;
+			}
+		}
+public:
+	property String^ Email {
+		String^ get() {
+			return lbEmailBuff->Text;
+		}
+		void set(String^ value) {
+			lbEmailBuff->Text = value;
+		}
+	}
 
+
+private: System::Void UserDetails_Shown(System::Object^ sender, System::EventArgs^ e) {
+
+	std::string email = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std::ifstream inputFile(email + "_User_Data.txt");
+	std::string line;
+	//Line 1 & 2 of file skipped
+	std::getline(inputFile, line);
+	std::getline(inputFile, line);
+	//Reading line 3, location of user name
+	std::getline(inputFile, line);
+	inputFile.close();
+
+	//This makes the "User Name Here" label display user's name.
+	String^ NAME = msclr::interop::marshal_as<System::String^>(line);
+	lbUserNameTop->Text = NAME;
+
+	//**Start** Code for edited 1st info block - NAME
+	lbName->Text = NAME;
+	
+	
+	//**Start** Code for edited 1st info block - ADDRESS
+	std::string address = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std::ifstream inputFileAddress(email + "_User_Data.txt");
+	std::string line2;
+	//Skip Line 1-4
+	std::getline(inputFileAddress, line2);
+	std::getline(inputFileAddress, line2);
+	std::getline(inputFileAddress, line2);
+	std::getline(inputFileAddress, line2);
+	//Reading line 5, location of user address
+	std::getline(inputFileAddress, line2);
+	inputFileAddress.close();
+	//Display information
+	String^ ADDRESS = msclr::interop::marshal_as<System::String^>(line2);
+	lbAddress->Text = ADDRESS;
+
+	
+	 
+	//**Start** Code for edited 1st info block - PHONE
+	std::string phone = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std:ifstream inputFilePhone(email + "_User_Data.txt");
+	string line3;
+	//Skipe Line 1-7
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	std::getline(inputFilePhone, line3);
+	//Reading Line 8, location of user phoneNum
+	std::getline(inputFilePhone, line3);
+	inputFilePhone.close();
+	//Display information
+	String^ PHONE = msclr::interop::marshal_as<System::String^>(line3);
+	lbPhone->Text = PHONE;
+
+
+	//**Start** Code for edited 1st info block - GENDER
+	std::string gender = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	ifstream inputFileGender(email + "_User_Data.txt");
+	string line4;
+	//Skip line 1-5
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	std::getline(inputFileGender, line4);
+	//Reading Line 5, location of user gender
+	std::getline(inputFileGender, line4);
+	inputFileGender.close();
+	//Display information
+	String^ GENDER = msclr::interop::marshal_as<System::String^>(line4);
+	lbGender->Text = GENDER;
+	
+	
+	//**Start** Code for edited 1st info block - ETHNICTY
+	std::string ethnicty = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	ifstream inputFileEthnicty(email + "_User_Data.txt");
+	string line5;
+	//Skip line 1-6
+	std::getline(inputFileEthnicty, line5);
+	std::getline(inputFileEthnicty, line5);
+	std::getline(inputFileEthnicty, line5);
+	std::getline(inputFileEthnicty, line5);
+	std::getline(inputFileEthnicty, line5);
+	std::getline(inputFileEthnicty, line5);
+	//Reading Line 7
+	std::getline(inputFileEthnicty, line5);
+	inputFileEthnicty.close();
+	//Display information
+	String^ ETHNICTY = msclr::interop::marshal_as<System::String^>(line5);
+	lbEthnicty->Text = ETHNICTY;
+	
+
+}
 };
 }

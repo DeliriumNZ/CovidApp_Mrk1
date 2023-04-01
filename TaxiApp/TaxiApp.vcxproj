@@ -117,18 +117,43 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdminDash.cpp" />
+    <ClCompile Include="AdminEditUserDets.cpp" />
+    <ClCompile Include="AdminMenu.cpp" />
+    <ClCompile Include="AdminQR.cpp" />
+    <ClCompile Include="AdminUserDoc.cpp" />
     <ClCompile Include="DashBoard.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Register.cpp" />
+    <ClCompile Include="ReportBug.cpp" />
     <ClCompile Include="UserDetails.cpp" />
+    <ClCompile Include="UserQR.cpp" />
+    <ClCompile Include="UserRecords.cpp" />
+    <ClCompile Include="UserVaccine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminDash.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminEditUserDets.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminQR.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminUserDoc.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="DashBoard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -138,11 +163,38 @@
     <ClInclude Include="Register.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ReportBug.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UserDetails.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserQR.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserRecords.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="UserVaccine.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdminDash.resx">
+      <DependentUpon>AdminDash.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminEditUserDets.resx">
+      <DependentUpon>AdminEditUserDets.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminMenu.resx">
+      <DependentUpon>AdminMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminQR.resx">
+      <DependentUpon>AdminQR.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminUserDoc.resx">
+      <DependentUpon>AdminUserDoc.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.h</DependentUpon>
     </EmbeddedResource>
@@ -152,8 +204,20 @@
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportBug.resx">
+      <DependentUpon>ReportBug.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserDetails.resx">
       <DependentUpon>UserDetails.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserQR.resx">
+      <DependentUpon>UserQR.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserRecords.resx">
+      <DependentUpon>UserRecords.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserVaccine.resx">
+      <DependentUpon>UserVaccine.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

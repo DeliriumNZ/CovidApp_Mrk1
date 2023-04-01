@@ -1,5 +1,16 @@
 #pragma once
 #include "UserDetails.h"
+#include "UserRecords.h"
+#include "UserVaccine.h"
+#include "UserQR.h"
+#include "ReportBug.h"
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <msclr/marshal_cppstd.h>
+
+//#include "Login.h"
 
 namespace TaxiApp {
 
@@ -9,6 +20,8 @@ namespace TaxiApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for DashBoard
@@ -23,6 +36,18 @@ namespace TaxiApp {
 			//TODO: Add the constructor code here
 			//
 		}
+		DashBoard(String^Email)
+		{
+			InitializeComponent();
+			lbEmailBuff->Text = Email;
+		}
+		/*
+		DashBoard(String^ Username)
+		{
+			InitializeComponent();
+			label1->Text = Username;
+		}
+		*/
 
 	protected:
 		/// <summary>
@@ -36,12 +61,27 @@ namespace TaxiApp {
 			}
 		}
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ btnRegister;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ btnRecordsTest;
+	private: System::Windows::Forms::Button^ btnVaccine;
+	private: System::Windows::Forms::Button^ btnQRCode;
+	private: System::Windows::Forms::Button^ btnReportBug;
+	public: System::Windows::Forms::Label^ label1;
+
+	private: System::Windows::Forms::Label^ lbEmailBuff;
+
+
+	public:
+
+	public:
+	private:
+
+
+
+
+
+
+
+
 	protected:
 
 	private:
@@ -59,12 +99,12 @@ namespace TaxiApp {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(DashBoard::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->btnRegister = (gcnew System::Windows::Forms::Button());
+			this->btnRecordsTest = (gcnew System::Windows::Forms::Button());
+			this->btnVaccine = (gcnew System::Windows::Forms::Button());
+			this->btnQRCode = (gcnew System::Windows::Forms::Button());
+			this->btnReportBug = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lbEmailBuff = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -72,7 +112,7 @@ namespace TaxiApp {
 			this->button1->BackColor = System::Drawing::Color::Gold;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
 			this->button1->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->Location = System::Drawing::Point(79, 255);
+			this->button1->Location = System::Drawing::Point(77, 255);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(364, 65);
 			this->button1->TabIndex = 0;
@@ -80,66 +120,57 @@ namespace TaxiApp {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &DashBoard::button1_Click);
 			// 
-			// button2
+			// btnRecordsTest
 			// 
-			this->button2->BackColor = System::Drawing::Color::Gold;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
-			this->button2->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button2->Location = System::Drawing::Point(77, 347);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(364, 65);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"Records Test";
-			this->button2->UseVisualStyleBackColor = false;
+			this->btnRecordsTest->BackColor = System::Drawing::Color::Gold;
+			this->btnRecordsTest->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnRecordsTest->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnRecordsTest->Location = System::Drawing::Point(77, 347);
+			this->btnRecordsTest->Name = L"btnRecordsTest";
+			this->btnRecordsTest->Size = System::Drawing::Size(364, 65);
+			this->btnRecordsTest->TabIndex = 1;
+			this->btnRecordsTest->Text = L"Records Test";
+			this->btnRecordsTest->UseVisualStyleBackColor = false;
+			this->btnRecordsTest->Click += gcnew System::EventHandler(this, &DashBoard::btnRecordsTest_Click);
 			// 
-			// button3
+			// btnVaccine
 			// 
-			this->button3->BackColor = System::Drawing::Color::Gold;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
-			this->button3->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->Location = System::Drawing::Point(79, 442);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(364, 65);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Vaccine";
-			this->button3->UseVisualStyleBackColor = false;
+			this->btnVaccine->BackColor = System::Drawing::Color::Gold;
+			this->btnVaccine->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnVaccine->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnVaccine->Location = System::Drawing::Point(79, 442);
+			this->btnVaccine->Name = L"btnVaccine";
+			this->btnVaccine->Size = System::Drawing::Size(364, 65);
+			this->btnVaccine->TabIndex = 2;
+			this->btnVaccine->Text = L"Vaccine";
+			this->btnVaccine->UseVisualStyleBackColor = false;
+			this->btnVaccine->Click += gcnew System::EventHandler(this, &DashBoard::btnVaccine_Click);
 			// 
-			// button4
+			// btnQRCode
 			// 
-			this->button4->BackColor = System::Drawing::Color::Gold;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
-			this->button4->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button4->Location = System::Drawing::Point(79, 529);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(364, 65);
-			this->button4->TabIndex = 3;
-			this->button4->Text = L"QR Code";
-			this->button4->UseVisualStyleBackColor = false;
+			this->btnQRCode->BackColor = System::Drawing::Color::Gold;
+			this->btnQRCode->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnQRCode->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnQRCode->Location = System::Drawing::Point(79, 529);
+			this->btnQRCode->Name = L"btnQRCode";
+			this->btnQRCode->Size = System::Drawing::Size(364, 65);
+			this->btnQRCode->TabIndex = 3;
+			this->btnQRCode->Text = L"QR Code";
+			this->btnQRCode->UseVisualStyleBackColor = false;
+			this->btnQRCode->Click += gcnew System::EventHandler(this, &DashBoard::btnQRCode_Click);
 			// 
-			// button5
+			// btnReportBug
 			// 
-			this->button5->BackColor = System::Drawing::Color::Gold;
-			this->button5->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
-			this->button5->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button5->Location = System::Drawing::Point(79, 622);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(364, 65);
-			this->button5->TabIndex = 4;
-			this->button5->Text = L"Report Bugs";
-			this->button5->UseVisualStyleBackColor = false;
-			// 
-			// btnRegister
-			// 
-			this->btnRegister->BackColor = System::Drawing::Color::Gold;
-			this->btnRegister->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnRegister->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 18));
-			this->btnRegister->ForeColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->btnRegister->Location = System::Drawing::Point(342, 176);
-			this->btnRegister->Name = L"btnRegister";
-			this->btnRegister->Size = System::Drawing::Size(99, 38);
-			this->btnRegister->TabIndex = 10;
-			this->btnRegister->Text = L"Logout";
-			this->btnRegister->UseVisualStyleBackColor = false;
+			this->btnReportBug->BackColor = System::Drawing::Color::Gold;
+			this->btnReportBug->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15.75F));
+			this->btnReportBug->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnReportBug->Location = System::Drawing::Point(79, 622);
+			this->btnReportBug->Name = L"btnReportBug";
+			this->btnReportBug->Size = System::Drawing::Size(364, 65);
+			this->btnReportBug->TabIndex = 4;
+			this->btnReportBug->Text = L"Report Bugs";
+			this->btnReportBug->UseVisualStyleBackColor = false;
+			this->btnReportBug->Click += gcnew System::EventHandler(this, &DashBoard::btnReportBug_Click);
 			// 
 			// label1
 			// 
@@ -149,8 +180,17 @@ namespace TaxiApp {
 			this->label1->Location = System::Drawing::Point(96, 139);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(176, 24);
-			this->label1->TabIndex = 11;
+			this->label1->TabIndex = 0;
 			this->label1->Text = L"User Name Here";
+			// 
+			// lbEmailBuff
+			// 
+			this->lbEmailBuff->AutoSize = true;
+			this->lbEmailBuff->Location = System::Drawing::Point(12, 9);
+			this->lbEmailBuff->Name = L"lbEmailBuff";
+			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
+			this->lbEmailBuff->TabIndex = 0;
+			this->lbEmailBuff->Text = L"Email Buff";
 			// 
 			// DashBoard
 			// 
@@ -158,24 +198,85 @@ namespace TaxiApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->lbEmailBuff);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->btnRegister);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->btnReportBug);
+			this->Controls->Add(this->btnQRCode);
+			this->Controls->Add(this->btnVaccine);
+			this->Controls->Add(this->btnRecordsTest);
 			this->Controls->Add(this->button1);
 			this->Name = L"DashBoard";
 			this->Text = L"DashBoard";
+			this->Shown += gcnew System::EventHandler(this, &DashBoard::DashBoard_Shown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+//User Details Button	
+	private: System::String^ Username;
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	Username = lbEmailBuff->Text;
 		UserDetails^ detailsForm = gcnew UserDetails();
-		//Open Register window
+		detailsForm->SetEmailLabel(this->LabelText);
 		detailsForm->Show();
 	}
+private: System::Void btnRecordsTest_Click(System::Object^ sender, System::EventArgs^ e) {
+	UserRecords^ recordsForm = gcnew UserRecords();
+	recordsForm->Show();
+}
+private: System::Void btnVaccine_Click(System::Object^ sender, System::EventArgs^ e) {
+	UserVaccine^ vaccineForm = gcnew UserVaccine();
+	vaccineForm->Show();
+}
+private: System::Void btnQRCode_Click(System::Object^ sender, System::EventArgs^ e) {
+	UserQR^ qrForm = gcnew UserQR();
+	qrForm->Show();
+}
+private: System::Void btnReportBug_Click(System::Object^ sender, System::EventArgs^ e) {
+	ReportBug^ reportBugForm = gcnew ReportBug();
+	reportBugForm->SetEmailLabel(this->LabelText);
+	reportBugForm->ShowDialog();
+}
+
+
+public://Passes email buffer to other forms.
+	property String^ LabelText {String^ get() { return lbEmailBuff->Text;}}
+
+
+//This code doesnt feel needed anymore. Commented out just incase something breaks 29/03/23
+/*  
+public:
+	property String^ Email {
+		String^ get() {
+			return lbEmailBuff->Text;
+		}
+		void set(String^ value) {
+			lbEmailBuff->Text = value;
+		}
+	}
+*/
+
+
+//Auto fill all labels to show user info
+private: System::Void DashBoard_Shown(System::Object^ sender, System::EventArgs^ e) {
+
+	std::string email = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+	std::ifstream inputFile(email +"_User_Data.txt");
+	std::string line;
+	//Line 1 & 2 of file skipped
+	std::getline(inputFile, line);
+	std::getline(inputFile, line);
+	//Reading line 3, location of user name
+	std::getline(inputFile, line);	
+	inputFile.close();
+
+	//This makes the "User Name Here" label display user's name.
+	String^ TEST = msclr::interop::marshal_as<System::String^>(line);
+	label1->Text = TEST;
+	Username = label1->Text;	//Cant remmeber what this does lol too scared to remove
+}
+
 };
 }
