@@ -82,6 +82,7 @@ namespace TaxiApp {
 				static_cast<System::Byte>(0)));
 			this->rtbUserRecords->Location = System::Drawing::Point(90, 283);
 			this->rtbUserRecords->Name = L"rtbUserRecords";
+			this->rtbUserRecords->ReadOnly = true;
 			this->rtbUserRecords->Size = System::Drawing::Size(343, 380);
 			this->rtbUserRecords->TabIndex = 0;
 			this->rtbUserRecords->Text = L"";

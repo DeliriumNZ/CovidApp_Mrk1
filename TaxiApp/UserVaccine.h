@@ -79,6 +79,7 @@ namespace TaxiApp {
 			this->rtbUserRecords->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold));
 			this->rtbUserRecords->Location = System::Drawing::Point(90, 283);
 			this->rtbUserRecords->Name = L"rtbUserRecords";
+			this->rtbUserRecords->ReadOnly = true;
 			this->rtbUserRecords->Size = System::Drawing::Size(343, 380);
 			this->rtbUserRecords->TabIndex = 1;
 			this->rtbUserRecords->Text = L"";

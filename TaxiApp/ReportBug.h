@@ -150,6 +150,7 @@ namespace TaxiApp {
 			this->lbEmailBuff->Size = System::Drawing::Size(54, 13);
 			this->lbEmailBuff->TabIndex = 0;
 			this->lbEmailBuff->Text = L"Email Buff";
+			this->lbEmailBuff->Visible = false;
 			// 
 			// ReportBug
 			// 
