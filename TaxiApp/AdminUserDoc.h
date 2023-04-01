@@ -58,6 +58,9 @@ namespace TaxiApp {
 	private: System::Windows::Forms::Label^ lbUserNotUsed;
 	private: System::Windows::Forms::Button^ btnEditTests;
 	private: System::Windows::Forms::Button^ btnEditVaccines;
+	private: System::Windows::Forms::Button^ btnCompleted;
+	private: System::Windows::Forms::Button^ btnPartial;
+	private: System::Windows::Forms::Button^ btnUnvaccinat;
 
 	private:
 	protected:
@@ -85,11 +88,14 @@ namespace TaxiApp {
 			this->lbUserNotUsed = (gcnew System::Windows::Forms::Label());
 			this->btnEditTests = (gcnew System::Windows::Forms::Button());
 			this->btnEditVaccines = (gcnew System::Windows::Forms::Button());
+			this->btnCompleted = (gcnew System::Windows::Forms::Button());
+			this->btnPartial = (gcnew System::Windows::Forms::Button());
+			this->btnUnvaccinat = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// rtbSaveTests
 			// 
-			this->rtbSaveTests->Location = System::Drawing::Point(96, 304);
+			this->rtbSaveTests->Location = System::Drawing::Point(96, 284);
 			this->rtbSaveTests->Name = L"rtbSaveTests";
 			this->rtbSaveTests->Size = System::Drawing::Size(337, 153);
 			this->rtbSaveTests->TabIndex = 3;
@@ -97,9 +103,11 @@ namespace TaxiApp {
 			// 
 			// btnSaveTests
 			// 
-			this->btnSaveTests->Location = System::Drawing::Point(293, 254);
+			this->btnSaveTests->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnSaveTests->Location = System::Drawing::Point(293, 234);
 			this->btnSaveTests->Name = L"btnSaveTests";
-			this->btnSaveTests->Size = System::Drawing::Size(75, 23);
+			this->btnSaveTests->Size = System::Drawing::Size(106, 23);
 			this->btnSaveTests->TabIndex = 2;
 			this->btnSaveTests->Text = L"Save Tests";
 			this->btnSaveTests->UseVisualStyleBackColor = true;
@@ -117,9 +125,11 @@ namespace TaxiApp {
 			// 
 			// btnSaveVaccines
 			// 
-			this->btnSaveVaccines->Location = System::Drawing::Point(293, 484);
+			this->btnSaveVaccines->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnSaveVaccines->Location = System::Drawing::Point(293, 450);
 			this->btnSaveVaccines->Name = L"btnSaveVaccines";
-			this->btnSaveVaccines->Size = System::Drawing::Size(102, 23);
+			this->btnSaveVaccines->Size = System::Drawing::Size(127, 23);
 			this->btnSaveVaccines->TabIndex = 5;
 			this->btnSaveVaccines->Text = L"Save Vaccines";
 			this->btnSaveVaccines->UseVisualStyleBackColor = true;
@@ -127,7 +137,7 @@ namespace TaxiApp {
 			// 
 			// rtbSaveVaccines
 			// 
-			this->rtbSaveVaccines->Location = System::Drawing::Point(96, 528);
+			this->rtbSaveVaccines->Location = System::Drawing::Point(96, 494);
 			this->rtbSaveVaccines->Name = L"rtbSaveVaccines";
 			this->rtbSaveVaccines->Size = System::Drawing::Size(337, 153);
 			this->rtbSaveVaccines->TabIndex = 6;
@@ -159,9 +169,11 @@ namespace TaxiApp {
 			// 
 			// btnEditTests
 			// 
-			this->btnEditTests->Location = System::Drawing::Point(142, 254);
+			this->btnEditTests->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnEditTests->Location = System::Drawing::Point(121, 234);
 			this->btnEditTests->Name = L"btnEditTests";
-			this->btnEditTests->Size = System::Drawing::Size(75, 23);
+			this->btnEditTests->Size = System::Drawing::Size(114, 23);
 			this->btnEditTests->TabIndex = 1;
 			this->btnEditTests->Text = L"Edit Tests";
 			this->btnEditTests->UseVisualStyleBackColor = true;
@@ -169,13 +181,49 @@ namespace TaxiApp {
 			// 
 			// btnEditVaccines
 			// 
-			this->btnEditVaccines->Location = System::Drawing::Point(133, 484);
+			this->btnEditVaccines->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnEditVaccines->Location = System::Drawing::Point(114, 450);
 			this->btnEditVaccines->Name = L"btnEditVaccines";
-			this->btnEditVaccines->Size = System::Drawing::Size(102, 23);
+			this->btnEditVaccines->Size = System::Drawing::Size(121, 23);
 			this->btnEditVaccines->TabIndex = 4;
 			this->btnEditVaccines->Text = L"Edit Vaccines";
 			this->btnEditVaccines->UseVisualStyleBackColor = true;
 			this->btnEditVaccines->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnEditVaccines_Click);
+			// 
+			// btnCompleted
+			// 
+			this->btnCompleted->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnCompleted->Location = System::Drawing::Point(96, 671);
+			this->btnCompleted->Name = L"btnCompleted";
+			this->btnCompleted->Size = System::Drawing::Size(97, 23);
+			this->btnCompleted->TabIndex = 7;
+			this->btnCompleted->Text = L"Completed";
+			this->btnCompleted->UseVisualStyleBackColor = true;
+			this->btnCompleted->Click += gcnew System::EventHandler(this, &AdminUserDoc::btnCompleted_Click);
+			// 
+			// btnPartial
+			// 
+			this->btnPartial->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnPartial->Location = System::Drawing::Point(224, 671);
+			this->btnPartial->Name = L"btnPartial";
+			this->btnPartial->Size = System::Drawing::Size(75, 23);
+			this->btnPartial->TabIndex = 8;
+			this->btnPartial->Text = L"Partial";
+			this->btnPartial->UseVisualStyleBackColor = true;
+			// 
+			// btnUnvaccinat
+			// 
+			this->btnUnvaccinat->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnUnvaccinat->Location = System::Drawing::Point(321, 671);
+			this->btnUnvaccinat->Name = L"btnUnvaccinat";
+			this->btnUnvaccinat->Size = System::Drawing::Size(112, 23);
+			this->btnUnvaccinat->TabIndex = 9;
+			this->btnUnvaccinat->Text = L"Unvaccinated";
+			this->btnUnvaccinat->UseVisualStyleBackColor = true;
 			// 
 			// AdminUserDoc
 			// 
@@ -183,6 +231,9 @@ namespace TaxiApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(519, 759);
+			this->Controls->Add(this->btnUnvaccinat);
+			this->Controls->Add(this->btnPartial);
+			this->Controls->Add(this->btnCompleted);
 			this->Controls->Add(this->btnEditVaccines);
 			this->Controls->Add(this->btnEditTests);
 			this->Controls->Add(this->lbUserNotUsed);
@@ -335,6 +386,35 @@ private: System::Void btnEditVaccines_Click(System::Object^ sender, System::Even
 	{
 		MessageBox::Show("Failed to Open!");
 	}
+}
+private: System::Void btnCompleted_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Open File / Add a line 1st line? / Change Text / Close
+	//Read 1st line and Edit First Line Only!
+	if (rtbSaveVaccines->Text == "")
+	{
+		//If text if blank, do not update. This stops any loss of data
+		MessageBox::Show("Cannot currently update! User information cannot be blank, click edit first.");
+	}
+	else
+	{
+		string UpdateVacStatus = msclr::interop::marshal_as<std::string>(lbEmailBuff->Text);
+		string FileNameVacs = UpdateVacStatus + "_User_Vaccine_Records.txt";
+		ifstream VacStatus(FileNameVacs);
+		string line;
+		std::getline(VacStatus, line);
+
+		line = "Vaccine Status: Completed!";
+		VacStatus.close();
+		ofstream outFile(FileNameVacs);
+
+		string rtbTextV = msclr::interop::marshal_as<std::string>(rtbSaveVaccines->Text);
+		outFile << line << endl << endl;
+		outFile << rtbTextV;
+		outFile.close();
+
+		MessageBox::Show("Edit has been made");
+	}
+
 }
 };
 }
